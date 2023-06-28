@@ -1,0 +1,50 @@
+div {
+    display: flex;
+    background-color: aquamarine;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem;
+
+}
+
+nav {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style: none;
+}
+
+a {
+    display: block;
+    background-color: azure;
+    padding: 0.5rem;
+    margin: 0.2rem;
+    width: 5rem;
+    border-radius: 10px;
+    border-style: none;
+    box-shadow: none;
+    text-align: center;
+}
+
+.botaoSair {
+    padding: 0.5rem;
+    margin: 0.2rem;
+    width: 5rem;
+    border-radius: 10px;
+    border-style: none;
+    box-shadow: none;
+    background-color: red;
+}
+
+.botaoSair:hover {
+    background-color: rgb(255, 50, 50);
+}
