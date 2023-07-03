@@ -1,50 +1,60 @@
-div {
-    display: flex;
-    background-color: aquamarine;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 1rem;
-
+.navBarContainer {
+  display: flex;
+  background-color: #A020F0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;
 }
 
 nav {
-    width: 95%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  list-style: none;
 }
 
 a {
-    display: block;
-    background-color: azure;
-    padding: 0.5rem;
-    margin: 0.2rem;
-    width: 5rem;
-    border-radius: 10px;
-    border-style: none;
-    box-shadow: none;
-    text-align: center;
+  cursor: pointer;
+  display: block;
+  background-color: white;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  width: 5rem;
+  border-radius: 10px;
+  border-style: none;
+  box-shadow: none;
+  text-align: center;
 }
 
-.botaoSair {
-    padding: 0.5rem;
-    margin: 0.2rem;
-    width: 5rem;
-    border-radius: 10px;
-    border-style: none;
-    box-shadow: none;
-    background-color: red;
+a:hover {
+  background-color: #C0C0C0;
 }
 
-.botaoSair:hover {
-    background-color: rgb(255, 50, 50);
+.divBotaoSair {
+  display: flex;
+  justify-content: center;
+  width: 5%;
+}
+
+.botaoSair{
+  cursor: pointer;
+  border-radius: 20%;
+  border-style: none;
+  box-shadow: none;
+  padding: 0.5rem;
+  color: white;
+  background-color: rgba(0,0,0,0);
+}
+
+.botaoSair:hover{
+  background-color: #BA55D3;
 }
