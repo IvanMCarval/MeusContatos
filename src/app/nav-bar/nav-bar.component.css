@@ -1,6 +1,6 @@
 .navBarContainer {
   display: flex;
-  background-color: #A020F0;
+  background-color: #1C0B2B;
   box-sizing: border-box;
   width: 100%;
   padding: 1rem;
@@ -23,20 +23,20 @@ ul {
 }
 
 a {
+  color: white;
   cursor: pointer;
   display: block;
-  background-color: white;
-  padding: 0.5rem;
+  padding: 0.6rem;
   margin: 0.2rem;
-  width: 5rem;
-  border-radius: 10px;
+  width: 5.7rem;
+  border-radius: 0.8rem;
   border-style: none;
   box-shadow: none;
   text-align: center;
 }
 
 a:hover {
-  background-color: #C0C0C0;
+  background-color: rgba(192, 192, 192, 0.5);
 }
 
 .divBotaoSair {
@@ -56,5 +56,5 @@ a:hover {
 }
 
 .botaoSair:hover{
-  background-color: #BA55D3;
+  background-color: rgba(192, 192, 192, 0.5);
 }
