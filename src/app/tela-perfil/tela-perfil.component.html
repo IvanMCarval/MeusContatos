@@ -1,0 +1,62 @@
+<app-nav-bar></app-nav-bar>
+<div class="container">
+  <div class="divFormulario">
+    <form action="">
+      <div class="campoForm">
+        <input
+          type="text"
+          name="nome"
+          id="nome"
+          placeholder="Exemplo Nome"
+          autocomplete="off"
+          required
+        />
+        <label for="nome">Nome: </label>
+      </div>
+
+      <div class="campoForm">
+        <input
+          type="text"
+          name="email"
+          id="email"
+          placeholder="exemplo@email.com"
+          autocomplete="off"
+          required
+        />
+        <label for="email">E-mail: </label>
+      </div>
+
+      <div class="campoForm">
+        <input
+          type="text"
+          name="tel"
+          id="tel"
+          placeholder="(xx) xxxxx-xxxx"
+          autocomplete="off"
+          required
+          #telefoneInput
+          (input)="formatarTelefone(telefoneInput.value)"
+          [(ngModel)]="telefone"
+          [maxlength]="15"
+        />
+        <label for="tel">Telefone: </label>
+      </div>
+
+      <div class="campoForm">
+        <input
+          type="text"
+          name="ende"
+          id="ende"
+          placeholder="Rua Exemplo 000"
+          autocomplete="off"
+          required
+        />
+        <label for="ende">Endereço: </label>
+      </div>
+    </form>
+
+    <div class="botaoSalvarPerfil">
+      <button type="submit">Salvar</button>
+    </div>
+  </div>
+</div>
