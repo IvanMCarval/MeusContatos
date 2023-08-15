@@ -10,5 +10,8 @@ export class TelaPrincipalComponent {
     {nome: "Contato 1", email: "email1@email.com"},
     {nome: "Contato 2", email: "email2@email.com"},
     {nome: "Contato 3", email: "email3@email.com"},
+    {nome: "Contato 1", email: "email1@email.com"},
+    {nome: "Contato 2", email: "email2@email.com"},
+    {nome: "Contato 3", email: "email3@email.com"},
   ]
 }

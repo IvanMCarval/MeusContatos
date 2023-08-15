@@ -1,22 +1,27 @@
 .container {
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding-top: 5rem;
+  align-items: center;
+  padding: 2.5rem 0rem 2.5rem 0rem;
 }
 
 .containerLista {
+  box-sizing: border-box;
   border: 1px solid #371158;
   border-radius: 15px;
-  width: 25%;
+  width: 30%;
 }
 
 ul {
+  box-sizing: border-box;
   margin: 0;
   padding: 1rem;
 }
 
 li {
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -67,4 +72,23 @@ p {
 
 .botaoDeletar:hover {
   background-color: rgb(177, 5, 5);
+}
+
+.botaoCadastrar {
+  margin-top: 2rem;
+}
+
+.botaoCadastrar button {
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 20px;
+  border-radius: 10px;
+  color: white;
+  background-color: #371158;
+  border-style: none;
+}
+
+.botaoCadastrar button:hover {
+  background-color: #4f1681;
+  box-shadow: #4f1681;
 }
