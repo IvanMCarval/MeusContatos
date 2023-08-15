@@ -9,12 +9,14 @@ import {MatIconModule} from '@angular/material/icon';
 import { TelaPerfilComponent } from './tela-perfil/tela-perfil.component'
 
 import { FormsModule } from '@angular/forms';
+import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     TelaPerfilComponent,
+    TelaPrincipalComponent,
   ],
   imports: [
     BrowserModule,
