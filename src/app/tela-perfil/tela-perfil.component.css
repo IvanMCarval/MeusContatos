@@ -7,6 +7,9 @@
 
 .divFormulario {
   width: 25%;
+  padding: 1.5rem;
+  border: 2px solid #371158;
+  border-radius: 15px;
 }
 
 form {
@@ -57,11 +60,11 @@ input:focus::placeholder {
 
 .botaoSalvarPerfil {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding-top: 2.5rem;
 }
 
-button {
+.botaoSalvar {
   cursor: pointer;
   font-size: 20px;
   width: 25%;
@@ -72,7 +75,25 @@ button {
   border-style: none;
 }
 
-button:hover {
+.botaoSalvar:hover {
   background-color: #4f1681;
   box-shadow: #4f1681;
 }
+
+.botaoSair {
+  cursor: pointer;
+  font-size: 20px;
+  width: 25%;
+  height: 40px;
+  border-radius: 10px;
+  color: black;
+  background-color: #cfb105;
+  border-style: none;
+}
+
+.botaoSair:hover{
+  background-color: #FFD700;
+  box-shadow: #FFD700;
+}
+
+

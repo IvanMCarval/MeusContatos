@@ -9,9 +9,16 @@
 
 .containerLista {
   box-sizing: border-box;
-  border: 1px solid #371158;
+  border: 2px solid #371158;
   border-radius: 15px;
   width: 30%;
+  height: 40rem;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+.containerLista::-webkit-scrollbar{
+  display: none;
 }
 
 ul {
