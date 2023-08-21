@@ -2,17 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  selector: 'app-tela-login',
+  templateUrl: './tela-login.component.html',
+  styleUrls: ['./tela-login.component.css']
 })
-export class NavBarComponent {
+export class TelaLoginComponent {
   constructor(private router: Router) {}
-
-
-  navigarAtePerfil() {
-    this.router.navigate(['/perfil']);
-  }
 
   navegarAtePrincipal() {
     this.router.navigate(['/principal'])

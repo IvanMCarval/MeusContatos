@@ -1,0 +1,51 @@
+.loginContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 86vh;
+}
+
+.loginTxt{
+    font-family: 'Lexend-Deca';
+    text-align: center;
+    color: #461273;
+}
+
+#title{
+    font-size: 70px;
+    margin-bottom: 0%;
+}
+
+#subtitle{
+    font-size: 20px;
+    margin: 10px;
+    margin-bottom: 3rem;
+}
+
+#loginForm{
+    text-align: center;
+}
+
+.inputBox {
+    padding: 0.5rem;
+}
+
+.loginInputs{
+    width: 60%;
+    height: 2rem;
+    border: 1.5px solid #461273;
+    border-radius: 10px;
+}
+
+#loginBtn{
+    width: 20%;
+    height: 2rem;
+    color: #FFFFFF;
+    background-color: #461273;
+    border: none;
+    border-radius: 10px;
+}
+
+#loginBtn:hover{
+    background-color: #4f1681;
+}
