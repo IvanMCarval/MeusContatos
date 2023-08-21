@@ -10,11 +10,15 @@ export class NavBarComponent {
   constructor(private router: Router) {}
 
 
-  navigarAtePerfil() {
+  navegarAtePerfil() {
     this.router.navigate(['/perfil']);
   }
 
   navegarAtePrincipal() {
     this.router.navigate(['/principal'])
+  }
+
+  navegarAteCadastro() {
+    this.router.navigate(['/cadastro_contato'])
   }
 }
