@@ -10,6 +10,7 @@ import { TelaPerfilComponent } from './tela-perfil/tela-perfil.component'
 
 import { FormsModule } from '@angular/forms';
 import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
+import { TelaLoginComponent } from './tela-login/tela-login.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { TelaPrincipalComponent } from './tela-principal/tela-principal.componen
     NavBarComponent,
     TelaPerfilComponent,
     TelaPrincipalComponent,
+    TelaLoginComponent,
   ],
   imports: [
     BrowserModule,

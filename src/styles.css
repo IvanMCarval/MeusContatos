@@ -15,3 +15,8 @@ body {
   font-family: 'Roboto-Bold';
   src: url('./assets/fonts/Roboto-Bold.ttf');
 }
+
+@font-face {
+  font-family: 'Lexend-Deca';
+  src: url('./assets/fonts/Lexend-Deca.ttf');
+}
