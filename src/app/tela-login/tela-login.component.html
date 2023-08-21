@@ -6,15 +6,14 @@
         </div>
         <div>
             <form id="loginForm">
-                <div class="inputBox">
-                    <input type="email" id="email" class="loginInputs" name="email" placeholder="E-mail" required>
+                <input type="email" id="email" class="loginInputs" name="email" placeholder="E-mail" required>
+                <input type="password" id="password" class="loginInputs" name="password" placeholder="Senha" required>
+
+                
+                <div class="botoesCadastrarLogar">
+                    <button id="loginBtn">Cadastrar-se</button>
+                    <button id="loginBtn" type="submit" (click)="navegarAtePrincipal()">Login</button>
                 </div>
-                <div class="inputBox">
-                    <input type="password" id="password" class="loginInputs" name="password" placeholder="Senha" required>
-                </div>
-                <a (click)="navegarAtePrincipal()">
-                    <button id="loginBtn" type="submit">Login</button>
-                </a>
             </form>
         </div>
     </div>

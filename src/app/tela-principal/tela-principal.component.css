@@ -99,3 +99,8 @@ p {
   background-color: #4f1681;
   box-shadow: #4f1681;
 }
+
+.spanNomeUsuario {
+  font-size: 30px;
+  margin-bottom: 20px;
+}

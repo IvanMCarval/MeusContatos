@@ -1,8 +1,10 @@
 .loginContainer{
+    box-sizing: border-box;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 86vh;
+    height: 100vh;
+    padding-top: 5rem;
 }
 
 .loginTxt{
@@ -13,33 +15,40 @@
 
 #title{
     font-size: 70px;
-    margin-bottom: 0%;
+    margin: 0;
 }
 
 #subtitle{
     font-size: 20px;
     margin: 10px;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 #loginForm{
-    text-align: center;
-}
-
-.inputBox {
-    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .loginInputs{
-    width: 60%;
-    height: 2rem;
+    height: 3rem;
     border: 1.5px solid #461273;
     border-radius: 10px;
+    font-size: 20px;
+    padding-left: 10px;
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+.botoesCadastrarLogar {
+    display: flex;
+    justify-content: space-between;
 }
 
 #loginBtn{
-    width: 20%;
-    height: 2rem;
+    font-size: 17px;
+    margin-top: 1rem;
+    width: 30%;
+    height: 2.5rem;
     color: #FFFFFF;
     background-color: #461273;
     border: none;
