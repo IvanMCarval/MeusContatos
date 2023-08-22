@@ -12,4 +12,8 @@ export class TelaLoginComponent {
   navegarAtePrincipal() {
     this.router.navigate(['/principal'])
   }
+
+  navegarAteCadastroUsuario() {
+    this.router.navigate(['/cadastro-usuario'])
+  }
 }

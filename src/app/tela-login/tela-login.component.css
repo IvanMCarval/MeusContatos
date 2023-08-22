@@ -45,6 +45,7 @@
 }
 
 #loginBtn{
+    cursor: pointer;
     font-size: 17px;
     margin-top: 1rem;
     width: 30%;

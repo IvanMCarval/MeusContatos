@@ -1,0 +1,59 @@
+<div class="container">
+  <span>Cadastrar novo usuário</span>
+  <div class="divFormulario">
+    <form action="">
+      <div class="campoForm">
+        <label for="nome">Nome: </label>
+        <input
+          type="text"
+          name="nome"
+          id="nome"
+          placeholder="Exemplo Nome"
+          autocomplete="off"
+          required
+        />
+      </div>
+
+      <div class="campoForm">
+        <label for="email">E-mail: </label>
+        <input
+          type="text"
+          name="email"
+          id="email"
+          placeholder="exemplo@email.com"
+          autocomplete="off"
+          required
+        />
+      </div>
+
+      <div class="campoForm">
+        <label for="tel">Telefone: </label>
+        <input
+          type="text"
+          name="tel"
+          id="tel"
+          placeholder="(xx) xxxxx-xxxx"
+          autocomplete="off"
+          required
+        />
+      </div>
+
+      <div class="campoForm">
+        <label for="ende">Endereço: </label>
+        <input
+          type="text"
+          name="ende"
+          id="ende"
+          placeholder="Rua Exemplo 000"
+          autocomplete="off"
+          required
+        />
+      </div>
+
+      <div class="divBotao">
+        <button (click)="navagarTelaLogin()" class="botaoCancelar">Cancelar</button>
+        <button type="submit" class="botaoCadastrar">Cadastrar</button>
+      </div>
+    </form>
+  </div>
+</div>

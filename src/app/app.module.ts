@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { TelaPrincipalComponent } from './tela-principal/tela-principal.component';
 import { TelaLoginComponent } from './tela-login/tela-login.component';
 import { TelaCadastroContatoComponent } from './tela-cadastro-contato/tela-cadastro-contato.component';
+import { TelaCadastroUsuarioComponent } from './tela-cadastro-usuario/tela-cadastro-usuario.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { TelaCadastroContatoComponent } from './tela-cadastro-contato/tela-cadas
     TelaPrincipalComponent,
     TelaLoginComponent,
     TelaCadastroContatoComponent,
+    TelaCadastroUsuarioComponent,
   ],
   imports: [
     BrowserModule,
