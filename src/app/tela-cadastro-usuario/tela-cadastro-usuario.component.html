@@ -1,7 +1,7 @@
 <div class="container">
   <span>Cadastrar novo usuário</span>
   <div class="divFormulario">
-    <form action="">
+    <form (ngSubmit)="cadastrarUsuario()" #meuFormulario="ngForm">
       <div class="campoForm">
         <label for="nome">Nome: </label>
         <input
@@ -9,10 +9,25 @@
           name="nome"
           id="nome"
           placeholder="Exemplo Nome"
+          [(ngModel)]="nome"
           autocomplete="off"
           required
         />
       </div>
+
+      <div class="campoForm">
+        <label for="senha">Senha: </label>
+        <input
+          type="password"
+          name="senha"
+          id="senha"
+          placeholder="Senha"
+          [(ngModel)]="senha"
+          autocomplete="off"
+          required
+        />
+      </div>
+    
 
       <div class="campoForm">
         <label for="email">E-mail: </label>
@@ -21,6 +36,7 @@
           name="email"
           id="email"
           placeholder="exemplo@email.com"
+          [(ngModel)]="email"
           autocomplete="off"
           required
         />
@@ -33,6 +49,10 @@
           name="tel"
           id="tel"
           placeholder="(xx) xxxxx-xxxx"
+          maxlength="15"
+          #telefoneInput
+          (input)="formatarTelefone(telefoneInput.value)"
+          [(ngModel)]="telefone"
           autocomplete="off"
           required
         />
@@ -84,6 +104,7 @@
               name="numero"
               id="numero"
               placeholder="Numero"
+              [(ngModel)]="numero"
               autocomplete="off"
               required
             />
@@ -94,17 +115,28 @@
               name="cidade"
               id="cidade"
               placeholder="Cidade"
-              [(ngModel)]="enderecoCompleto.cidade"
+              [(ngModel)]="enderecoCompleto.localidade"
               autocomplete="off"
               required
             />
           </div>
         </div>
+        <div class="campoForm">
+          <input
+            type="text"
+            name="uf"
+            id="uf"
+            placeholder="Estado"
+            [(ngModel)]="enderecoCompleto.uf"
+            autocomplete="off"
+            required
+          />
+        </div>
       </div>
 
       <div class="divBotao">
         <button (click)="navagarTelaLogin()" class="botaoCancelar">Cancelar</button>
-        <button type="submit" class="botaoCadastrar">Cadastrar</button>
+        <button type="submit" class="botaoCadastrar" [disabled]="!meuFormulario.valid">Cadastrar</button>
       </div>
     </form>
   </div>
