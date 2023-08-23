@@ -13,6 +13,8 @@ import { TelaPrincipalComponent } from './tela-principal/tela-principal.componen
 import { TelaLoginComponent } from './tela-login/tela-login.component';
 import { TelaCadastroContatoComponent } from './tela-cadastro-contato/tela-cadastro-contato.component';
 import { TelaCadastroUsuarioComponent } from './tela-cadastro-usuario/tela-cadastro-usuario.component';
+import { EnderecoService } from './Service/EnderecoService/endereco.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,10 @@ import { TelaCadastroUsuarioComponent } from './tela-cadastro-usuario/tela-cadas
     BrowserModule,
     AppRoutingModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [EnderecoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

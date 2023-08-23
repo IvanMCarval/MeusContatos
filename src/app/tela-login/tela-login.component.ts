@@ -10,10 +10,10 @@ export class TelaLoginComponent {
   constructor(private router: Router) {}
 
   navegarAtePrincipal() {
-    this.router.navigate(['/principal'])
+    this.router.navigate(['/principal']);
   }
 
   navegarAteCadastroUsuario() {
-    this.router.navigate(['/cadastro-usuario'])
+    this.router.navigate(['/cadastro_usuario']);
   }
 }

@@ -73,3 +73,13 @@ button {
   display: flex;
   justify-content: space-between;
 }
+
+.divRuaBairro {
+  display: flex;
+  justify-content: space-between;
+}
+
+.divNumeroCidade {
+  display: flex;
+  justify-content: space-between;
+}

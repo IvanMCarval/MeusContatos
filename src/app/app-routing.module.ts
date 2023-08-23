@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'principal', component: TelaPrincipalComponent},
   {path: 'perfil', component: TelaPerfilComponent},
   {path: 'cadastro_contato', component: TelaCadastroContatoComponent},
-  {path: 'cadastro-usuario', component: TelaCadastroUsuarioComponent}
+  {path: 'cadastro_usuario', component: TelaCadastroUsuarioComponent}
 ];
 
 @NgModule({

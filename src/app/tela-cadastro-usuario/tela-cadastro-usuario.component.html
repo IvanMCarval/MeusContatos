@@ -38,16 +38,68 @@
         />
       </div>
 
-      <div class="campoForm">
-        <label for="ende">Endereço: </label>
-        <input
-          type="text"
-          name="ende"
-          id="ende"
-          placeholder="Rua Exemplo 000"
-          autocomplete="off"
-          required
-        />
+      <div class="divEndereco">
+        <div class="campoForm">
+          <label>Endereço: </label>
+          <input
+            type="text"
+            name="cep"
+            id="cep"
+            placeholder="CEP"
+            [(ngModel)]="cep"
+            (blur)="procurarEndereco()"
+            maxlength="8"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div class="divRuaBairro">
+          <div class="campoForm">
+            <input
+              type="text"
+              name="rua"
+              id="rua"
+              placeholder="Rua"
+              [(ngModel)]="enderecoCompleto.logradouro"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <div class="campoForm">
+            <input
+              type="text"
+              name="bairro"
+              id="bairro"
+              placeholder="Bairro"
+              [(ngModel)]="enderecoCompleto.bairro"
+              autocomplete="off"
+              required
+            />
+          </div>
+        </div>
+        <div class="divNumeroCidade">
+          <div class="campoForm">
+            <input
+              type="text"
+              name="numero"
+              id="numero"
+              placeholder="Numero"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <div class="campoForm">
+            <input
+              type="text"
+              name="cidade"
+              id="cidade"
+              placeholder="Cidade"
+              [(ngModel)]="enderecoCompleto.cidade"
+              autocomplete="off"
+              required
+            />
+          </div>
+        </div>
       </div>
 
       <div class="divBotao">
