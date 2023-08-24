@@ -1,8 +1,9 @@
 export interface Endereco {
-    cep: string;
-    logradouro: string;
-    bairro: string;
-    localidade: string;
-    uf: string;
-    numero: string;
+  cep?: string;
+  logradouro?: string;
+  bairro?: string;
+  localidade?: string;
+  uf?: string;
+  numero?: string;
+  erro?: boolean;
 }

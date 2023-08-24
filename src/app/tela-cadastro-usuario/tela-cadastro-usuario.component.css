@@ -8,7 +8,7 @@
 }
 
 span {
-  font-family: 'Lexend-Deca';
+  font-family: "Lexend-Deca";
   font-size: 30px;
   margin-bottom: 1.5rem;
   color: #461273;
@@ -26,6 +26,10 @@ span {
   flex-direction: column;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+#divisoria {
+  width: 2%;
 }
 
 label {
@@ -69,7 +73,7 @@ button {
   background-color: rgb(211, 211, 211);
 }
 
-.divBotao{
+.divBotao {
   display: flex;
   justify-content: space-between;
 }
@@ -82,4 +86,8 @@ button {
 .divNumeroCidade {
   display: flex;
   justify-content: space-between;
+}
+
+.invalid-input {
+  border: 2px solid #ff0000;
 }

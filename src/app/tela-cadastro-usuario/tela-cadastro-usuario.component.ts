@@ -1,87 +1,88 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { EnderecoService } from '../Service/EnderecoService/endereco.service';
-import { Endereco } from '../Models/endereco.interface';
 import { Usuario } from '../Models/usuario.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tela-cadastro-usuario',
   templateUrl: './tela-cadastro-usuario.component.html',
-  styleUrls: ['./tela-cadastro-usuario.component.css']
+  styleUrls: ['./tela-cadastro-usuario.component.css'],
 })
 export class TelaCadastroUsuarioComponent {
-  constructor(private router: Router, private endereco: EnderecoService) {}
+  formularioCadastroUsuartio: FormGroup;
+  formSubmited: boolean = false;
 
-  nome: string = '';
-  senha: string = '';
-  email: string = '';
-  telefone: string = '';
-  cep: string = '';
-  numero: string = '';
-  enderecoCompleto: Endereco = {
-    cep: '',
-    logradouro: '',
-    bairro: '',
-    localidade: '',
-    uf: '',
-    numero: ''
-  };
-  
-  usuario: Usuario = new Usuario('', '', '', '', this.enderecoCompleto)
+  constructor(
+    private router: Router,
+    private endereco: EnderecoService,
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar
+  ) {
+    this.formularioCadastroUsuartio = this.fb.group({
+      nome: ['', Validators.required],
+      senha: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      telefone: ['', Validators.required],
+      cep: ['', Validators.required],
+      logradouro: ['', Validators.required],
+      bairro: ['', Validators.required],
+      numero: ['', Validators.required],
+      localidade: ['', Validators.required],
+      uf: ['', Validators.required],
+    });
+  }
 
   navagarTelaLogin() {
     this.router.navigate(['/']);
   }
 
-  formatarTelefone(valor: string) {
-    valor = valor.replace(/\D/g, '');
-
-    valor = valor.replace(/^(\d{2})(\d{4,5})(\d{4})$/, '($1) $2-$3');
-
-    this.telefone = valor;
-  }
-
   procurarEndereco() {
-    const validacaoCep = /^[0-9]{8}$/;
+    const cep = this.formularioCadastroUsuartio.get('cep')?.value;
+    const numeroEndereco = this.formularioCadastroUsuartio.get('numero')?.value;
 
-    if (validacaoCep.test(this.cep)) {
-      if (this.cep && this.cep.length == 8) {
-        this.endereco.getEnderecoPorCep(this.cep).subscribe({
-          next: (response) => {
-            this.enderecoCompleto = {
-              cep: response.cep.replace(/\D/g, ''),
-              logradouro: response.logradouro,
-              bairro: response.bairro,
-              localidade: response.localidade,
-              uf: response.uf,
-              numero: '',
-            }
-          },
-          error: (erro) => console.log(erro)
-        })
-      }
-    } else {
-      this.enderecoCompleto = {
-        cep: '',
-        logradouro: '',
-        bairro: '',
-        localidade: '',
-        uf: '',
-        numero: '',
-      }
-    }
+    this.endereco.getEnderecoPorCep(cep, numeroEndereco).subscribe({
+      next: (response) => {
+        this.formularioCadastroUsuartio.patchValue({
+          cep: response?.cep?.replace(/\D/g, ''),
+          logradouro: response?.logradouro,
+          bairro: response?.bairro,
+          numero: response?.numero,
+          localidade: response?.localidade,
+          uf: response?.uf,
+        });
+      },
+      error: (erro) => console.log('erro no comp: ', erro),
+    });
   }
 
   cadastrarUsuario() {
-    this.usuario.nome = this.nome
-    this.usuario.email = this.email
-    this.usuario.senha = this.senha
+    this.formSubmited = true;
 
-    this.usuario.telefone = this.telefone
-    this.usuario.telefone = this.usuario.telefone.replace(/\D/g, '')
+    if (this.formularioCadastroUsuartio.valid) {
+      const usuario: Usuario = new Usuario();
 
-    this.enderecoCompleto.numero = this.numero
-    this.usuario.endereco = this.enderecoCompleto
-    console.log(this.usuario)
+      usuario.nome = this.formularioCadastroUsuartio.get('nome')?.value;
+      usuario.senha = this.formularioCadastroUsuartio.get('senha')?.value;
+      usuario.email = this.formularioCadastroUsuartio.get('email')?.value;
+      usuario.telefone = this.formularioCadastroUsuartio.get('telefone')?.value;
+      usuario.endereco.cep = this.formularioCadastroUsuartio.get('cep')?.value;
+      usuario.endereco.logradouro =
+        this.formularioCadastroUsuartio.get('logradouro')?.value;
+      usuario.endereco.bairro =
+        this.formularioCadastroUsuartio.get('bairro')?.value;
+      usuario.endereco.localidade =
+        this.formularioCadastroUsuartio.get('localidade')?.value;
+      usuario.endereco.uf = this.formularioCadastroUsuartio.get('uf')?.value;
+      usuario.endereco.numero =
+        this.formularioCadastroUsuartio.get('numero')?.value;
+
+      console.log(usuario);
+    } else {
+      this.snackBar.open('Preencha os campos obrigatorios!', 'Fechar', {
+        duration: 3000,
+      });
+    }
   }
 }

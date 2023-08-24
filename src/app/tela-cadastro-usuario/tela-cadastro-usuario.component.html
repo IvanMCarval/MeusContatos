@@ -1,7 +1,10 @@
 <div class="container">
   <span>Cadastrar novo usuário</span>
   <div class="divFormulario">
-    <form (ngSubmit)="cadastrarUsuario()" #meuFormulario="ngForm">
+    <form
+      (ngSubmit)="cadastrarUsuario()"
+      [formGroup]="formularioCadastroUsuartio"
+    >
       <div class="campoForm">
         <label for="nome">Nome: </label>
         <input
@@ -9,7 +12,11 @@
           name="nome"
           id="nome"
           placeholder="Exemplo Nome"
-          [(ngModel)]="nome"
+          formControlName="nome"
+          [ngClass]="{
+            'invalid-input':
+              (formularioCadastroUsuartio.get('nome')?.invalid && formSubmited)
+          }"
           autocomplete="off"
           required
         />
@@ -22,12 +29,15 @@
           name="senha"
           id="senha"
           placeholder="Senha"
-          [(ngModel)]="senha"
+          formControlName="senha"
+          [ngClass]="{
+            'invalid-input':
+              (formularioCadastroUsuartio.get('senha')?.invalid && formSubmited)
+          }"
           autocomplete="off"
           required
         />
       </div>
-    
 
       <div class="campoForm">
         <label for="email">E-mail: </label>
@@ -36,7 +46,11 @@
           name="email"
           id="email"
           placeholder="exemplo@email.com"
-          [(ngModel)]="email"
+          formControlName="email"
+          [ngClass]="{
+            'invalid-input':
+              (formularioCadastroUsuartio.get('email')?.invalid && formSubmited)
+          }"
           autocomplete="off"
           required
         />
@@ -50,9 +64,12 @@
           id="tel"
           placeholder="(xx) xxxxx-xxxx"
           maxlength="15"
-          #telefoneInput
-          (input)="formatarTelefone(telefoneInput.value)"
-          [(ngModel)]="telefone"
+          mask="(00) 00000-0000"
+          formControlName="telefone"
+          [ngClass]="{
+            'invalid-input':
+              (formularioCadastroUsuartio.get('telefone')?.invalid && formSubmited)
+          }"
           autocomplete="off"
           required
         />
@@ -66,9 +83,14 @@
             name="cep"
             id="cep"
             placeholder="CEP"
-            [(ngModel)]="cep"
+            mask="00000-000"
+            formControlName="cep"
             (blur)="procurarEndereco()"
-            maxlength="8"
+            maxlength="9"
+            [ngClass]="{
+              'invalid-input':
+                (formularioCadastroUsuartio.get('cep')?.invalid && formSubmited)
+            }"
             autocomplete="off"
             required
           />
@@ -80,18 +102,27 @@
               name="rua"
               id="rua"
               placeholder="Rua"
-              [(ngModel)]="enderecoCompleto.logradouro"
+              formControlName="logradouro"
+              [ngClass]="{
+                'invalid-input':
+                  (formularioCadastroUsuartio.get('logradouro')?.invalid && formSubmited)
+              }"
               autocomplete="off"
               required
             />
           </div>
+          <div id="divisoria"></div>
           <div class="campoForm">
             <input
               type="text"
               name="bairro"
               id="bairro"
               placeholder="Bairro"
-              [(ngModel)]="enderecoCompleto.bairro"
+              formControlName="bairro"
+              [ngClass]="{
+                'invalid-input':
+                  (formularioCadastroUsuartio.get('bairro')?.invalid && formSubmited)
+              }"
               autocomplete="off"
               required
             />
@@ -104,18 +135,28 @@
               name="numero"
               id="numero"
               placeholder="Numero"
-              [(ngModel)]="numero"
+              formControlName="numero"
+              maxlength="4"
+              [ngClass]="{
+                'invalid-input':
+                  (formularioCadastroUsuartio.get('numero')?.invalid && formSubmited)
+              }"
               autocomplete="off"
               required
             />
           </div>
+          <div id="divisoria"></div>
           <div class="campoForm">
             <input
               type="text"
               name="cidade"
               id="cidade"
               placeholder="Cidade"
-              [(ngModel)]="enderecoCompleto.localidade"
+              formControlName="localidade"
+              [ngClass]="{
+                'invalid-input':
+                  (formularioCadastroUsuartio.get('localidade')?.invalid && formSubmited)
+              }"
               autocomplete="off"
               required
             />
@@ -127,7 +168,11 @@
             name="uf"
             id="uf"
             placeholder="Estado"
-            [(ngModel)]="enderecoCompleto.uf"
+            formControlName="uf"
+            [ngClass]="{
+              'invalid-input':
+                (formularioCadastroUsuartio.get('uf')?.invalid && formSubmited)
+            }"
             autocomplete="off"
             required
           />
@@ -135,8 +180,15 @@
       </div>
 
       <div class="divBotao">
-        <button (click)="navagarTelaLogin()" class="botaoCancelar">Cancelar</button>
-        <button type="submit" class="botaoCadastrar" [disabled]="!meuFormulario.valid">Cadastrar</button>
+        <button (click)="navagarTelaLogin()" class="botaoCancelar">
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="botaoCadastrar"
+        >
+          Cadastrar
+        </button>
       </div>
     </form>
   </div>
