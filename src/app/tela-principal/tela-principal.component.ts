@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tela-principal',
@@ -6,6 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./tela-principal.component.css']
 })
 export class TelaPrincipalComponent {
+  constructor(private router : Router){}
+
+  navegarAteCadastro() {
+    this.router.navigate(['/cadastro_contato'])
+  }
+
   name: string = "Ivan" 
 
   list: any[] = [

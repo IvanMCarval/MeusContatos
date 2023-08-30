@@ -3,41 +3,57 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 2rem;
 }
 
 #title{
-    margin-top: 2.5rem;
+    margin-top: 1rem;
+    font-family: "Lexend-Deca";
+    font-weight: normal;
+    color: #181818;
 }
 
 .cadastroForm{
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 25rem;
+    padding: 1.5rem;
+    border: 2px solid #371158;
+    border-radius: 15px;
 }
 
 .cadastroInputs{
-    margin: 0.5rem 0 0.5rem 0;
-    height: 3rem;
-    border: 1.5px solid #371158;
-    border-radius: 10px;
-    font-size: 20px;
-    padding-left: 10px;
+    font-size: 17px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #371158;
+    border-radius: 15px;
+    outline: none;
+    padding: 0.5rem;
 }
 
-.labels{
-    font-size: 25px;
-    margin-top: 20px;
-}
+label {
+    margin-bottom: 0.5rem;
+    color: #371158;
+    font-size: 20px;
+  }
 
 .inputBox{
     display: flex;
-    justify-content: space-between;
-    text-align: justify;
+    flex-direction: column;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.btnCadastroDiv{
+    width: 100%;
 }
 
 #cadastroBtn{
-    font-size: 17px;
+    cursor: pointer;
+    font-size: 20px;
     margin-top: 1.5rem;
-    width: 10%;
+    width: 100%;
     height: 2.5rem;
     color: #FFFFFF;
     background-color: #371158;
@@ -48,3 +64,21 @@
 #cadastroBtn:hover{
     background-color: #4f1681;
 }
+
+.ruaEBairro{
+    display: flex;
+    justify-content: space-between;
+}
+
+.numeroECidade{
+    display: flex;
+    justify-content: space-between;
+}
+
+.divisoria{
+    width: 2%;
+}
+
+.invalid-input {
+    border: 2px solid #ff0000;
+  }
