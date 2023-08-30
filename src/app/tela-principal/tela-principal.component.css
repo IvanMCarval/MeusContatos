@@ -90,6 +90,7 @@ p {
   padding: 0.5rem;
   font-size: 20px;
   border-radius: 10px;
+  height: 2.5rem;
   color: white;
   background-color: #371158;
   border-style: none;
@@ -97,7 +98,6 @@ p {
 
 .botaoCadastrar button:hover {
   background-color: #4f1681;
-  box-shadow: #4f1681;
 }
 
 .spanNomeUsuario {

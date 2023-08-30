@@ -69,8 +69,12 @@ button {
   box-shadow: #4f1681;
 }
 
+.botaoCancelar{
+  background-color: #AEAEAE;
+}
+
 .botaoCancelar:hover {
-  background-color: rgb(211, 211, 211);
+  background-color: #cacaca;
 }
 
 .divBotao {

@@ -1,23 +1,86 @@
 <app-nav-bar></app-nav-bar>
 <div class="cadastroContainer">
     <h1 id="title">Novo Contato</h1>
-    <form class="cadastroForm">
+    <form 
+    [formGroup]="formularioCadastroContato" 
+    (ngSubmit)="cadastrarContato()" class="cadastroForm">
         <div class="inputBox">
-            <label for="nome" class="labels">Nome:</label>
-            <input type="text" id="nome" class="cadastroInputs" name="nome" required>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" class="cadastroInputs" name="nome" placeholder="Exemplo Nome" autocomplete="off"
+            [ngClass]="{
+                'invalid-input':
+                (formularioCadastroContato.get('nome')?.invalid && formSubmited)
+            }" required>
         </div>
         <div class="inputBox">
-            <label for="email" class="labels">E-Mail:</label>
-            <input type="email" id="email" class="cadastroInputs" name="email" required>
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" class="cadastroInputs" name="email" placeholder="exemplo@email.com" autocomplete="off"
+            [ngClass]="{
+                'invalid-input':
+                (formularioCadastroContato.get('email')?.invalid && formSubmited)
+            }" required>
         </div>
         <div class="inputBox">
-            <label for="telefone" class="labels">Telefone:</label>
-            <input type="tel" id="telefone" class="cadastroInputs" name="telefone" placeholder="(xx) xxxxx-xxxx" required>
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" class="cadastroInputs" name="telefone" placeholder="(xx) xxxxx-xxxx" maxlength="15" mask="(00) 00000-0000" autocomplete="off"
+            [ngClass]="{
+                'invalid-input':
+                (formularioCadastroContato.get('telefone')?.invalid && formSubmited)
+            }" required>
         </div>
-        <div class="inputBox">
-            <label for="email" class="labels">Endereço:</label>
-            <input type="text" id="endereco" class="cadastroInputs" name="endereco" required>
+        <div class="enderecoInputs">
+            <div class="inputBox">
+                <label>Endereço:</label>
+                <input type="text" id="cep" class="cadastroInputs" name="cep" placeholder="CEP" mask="00000-000" formControlName="cep" maxlength="9" autocomplete="off" (blur)="procurarEndereco()"
+                [ngClass]="{
+                    'invalid-input':
+                    (formularioCadastroContato.get('cep')?.invalid && formSubmited)
+                }" required>
+            </div>
+            <div class="ruaEBairro">
+                <div class="inputBox">
+                    <input type="text" id="rua" class="cadastroInputs" name="rua" placeholder="Rua" autocomplete="off" formControlName="logradouro"
+                    [ngClass]="{
+                        'invalid-input':
+                        (formularioCadastroContato.get('logradouro')?.invalid && formSubmited)
+                    }" required>
+                </div>
+                <div class="divisoria"></div>
+                <div class="inputBox">
+                    <input type="text" id="bairro" class="cadastroInputs" name="bairro" placeholder="Bairro" formControlName="bairro" autocomplete="off"
+                    [ngClass]="{
+                        'invalid-input':
+                        (formularioCadastroContato.get('bairro')?.invalid && formSubmited)
+                    }" required>
+                </div>
+            </div>
+            <div class="numeroECidade">
+                <div class="inputBox">
+                    <input type="text" id="numero" class="cadastroInputs" name="numero" placeholder="Número" formControlName="numero" maxlength="4" autocomplete="off" 
+                    [ngClass]="{
+                        'invalid-input':
+                        (formularioCadastroContato.get('numero')?.invalid && formSubmited)
+                    }" required>
+                </div>
+                <div class="divisoria"></div>
+                <div class="inputBox">
+                    <input type="text" id="cidade" class="cadastroInputs" name="cidade" placeholder="Cidade" formControlName="localidade" autocomplete="off"
+                    [ngClass]="{
+                        'invalid-input':
+                        (formularioCadastroContato.get('localidade')?.invalid && formSubmited)
+                    }" required>
+                </div>
+            </div>
+            <div class="inputBox">
+                <input type="text" id="uf" class="cadastroInputs" name="uf" placeholder="Estado" formControlName="uf" autocomplete="off"
+                [ngClass]="{
+                    'invalid-input':
+                    (formularioCadastroContato.get('uf')?.invalid && formSubmited)
+                }" required>
+            </div>
+        </div>
+        <div class="btnCadastroDiv">
+            <button id="cadastroBtn" type="submit" (click)="navegarAtePrincipal()">Cadastrar</button>
         </div>
     </form>
-    <button id="cadastroBtn">Cadastrar</button>
 </div>
