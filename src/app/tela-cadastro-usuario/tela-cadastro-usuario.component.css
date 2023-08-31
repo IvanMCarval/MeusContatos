@@ -70,11 +70,11 @@ button {
 }
 
 .botaoCancelar{
-  background-color: #AEAEAE;
+  background-color: #cecece;
 }
 
 .botaoCancelar:hover {
-  background-color: #cacaca;
+  background-color: #e0e0e0;
 }
 
 .divBotao {

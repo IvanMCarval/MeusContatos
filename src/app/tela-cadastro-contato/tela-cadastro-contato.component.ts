@@ -69,6 +69,8 @@ export class TelaCadastroContatoComponent {
       contato.endereco.numero = this.formularioCadastroContato.get('numero')?.value;
 
       console.log(contato);
+
+      this.navegarAtePrincipal();
     } else {
       this.snackBar.open('Preencha os campos obrigatorios!', 'Fechar', {
         duration: 3000,
