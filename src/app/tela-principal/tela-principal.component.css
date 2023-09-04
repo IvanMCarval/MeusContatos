@@ -11,7 +11,7 @@
   box-sizing: border-box;
   border: 2px solid #371158;
   border-radius: 15px;
-  width: 30%;
+  width: 25%;
   height: 40rem;
   overflow: auto;
   scrollbar-width: none;
@@ -29,15 +29,8 @@ ul {
 
 li {
   box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  box-sizing: border-box;
   list-style: none;
   margin: 1rem;
-  padding: 1rem;
-  border: 1px solid #371158;
-  border-radius: 15px;
 }
 
 span {
@@ -45,13 +38,22 @@ span {
   margin-bottom: 10px;
 }
 
+.conteudo {
+  line-height: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
 p {
+  border: 0.5px solid black;
+  border-radius: 10px;
   margin: 0;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .containerBotoes {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -104,4 +106,13 @@ p {
   font-size: 30px;
   margin-bottom: 20px;
   font-family: 'Lexend-Deca';
+}
+
+mat-expansion-panel {
+  border: 2px solid #371158;
+}
+
+mat-panel-title {
+  font-size: 20px;
+  font-weight: 500;
 }

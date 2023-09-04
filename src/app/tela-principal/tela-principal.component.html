@@ -1,18 +1,41 @@
 <app-nav-bar></app-nav-bar>
 <div class="container">
-  <span class="spanNomeUsuario">Bem Vindo {{name}}</span>
+  <span class="spanNomeUsuario">Bem Vindo {{ name }}</span>
   <div class="containerLista">
     <ul>
-      <li *ngFor="let item of list">
-        <div>
-          <span>{{item.nome}}</span>
-          <p>{{item.email}}</p>
-        </div>
-        <div class="containerBotoes">
-          <button class="botaoEditar">Editar</button>
-          <button class="botaoDeletar">Deletar</button>
-        </div>
-      </li>
+      <mat-accordion>
+        <li *ngFor="let item of list">
+          <mat-expansion-panel (opened)="estadoPainel = true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>{{ item.nome }}</mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="conteudo">
+              <p>E-mail: {{ item.email }}</p>
+              <p>Telefone: {{item.telefone}}</p>
+              <p>Endereço: 
+                {{ item.endereco.logradouro }} {{ item.endereco.numero }},
+                {{ item.endereco.bairro }}, {{ item.endereco.localidade }}
+                {{ item.endereco.uf }}
+              </p>
+            </div>
+
+            <div class="containerBotoes">
+              <button class="botaoEditar">Editar</button>
+              <button class="botaoDeletar">Deletar</button>
+            </div>
+          </mat-expansion-panel>
+
+          <!-- <div>
+            <span>{{item.nome}}</span>
+            <p>{{item.email}}</p>
+          </div>
+          <div class="containerBotoes">
+            <button class="botaoEditar">Editar</button>
+            <button class="botaoDeletar">Deletar</button>
+          </div> -->
+        </li>
+      </mat-accordion>
     </ul>
   </div>
   <div class="botaoCadastrar">
