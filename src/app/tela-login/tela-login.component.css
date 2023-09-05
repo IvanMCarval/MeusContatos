@@ -44,7 +44,7 @@
     justify-content: space-between;
 }
 
-#loginBtn{
+.loginBtn{
     cursor: pointer;
     font-size: 17px;
     margin-top: 1rem;
@@ -56,6 +56,6 @@
     border-radius: 10px;
 }
 
-#loginBtn:hover{
+.loginBtn:hover{
     background-color: #4f1681;
 }

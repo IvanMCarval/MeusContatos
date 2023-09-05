@@ -4,14 +4,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2.5rem 0rem 2.5rem 0rem;
 }
 
 .containerLista {
   box-sizing: border-box;
   border: 2px solid #371158;
   border-radius: 15px;
-  width: 25%;
+  width: 25rem;
   height: 40rem;
   overflow: auto;
   scrollbar-width: none;
@@ -85,6 +84,9 @@ p {
 
 .botaoCadastrar {
   margin-top: 2rem;
+  display: flex;
+  width: 25%;
+  justify-content: center;
 }
 
 .botaoCadastrar button {
@@ -93,6 +95,7 @@ p {
   font-size: 20px;
   border-radius: 10px;
   height: 2.5rem;
+  width: 40%;
   color: white;
   background-color: #371158;
   border-style: none;
@@ -103,9 +106,11 @@ p {
 }
 
 .spanNomeUsuario {
-  font-size: 30px;
-  margin-bottom: 20px;
-  font-family: 'Lexend-Deca';
+  font-family: "Lexend-Deca";
+  font-weight: normal;
+  color: #181818;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 mat-expansion-panel {

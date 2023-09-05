@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class TelaLoginComponent {
   constructor(private router: Router) {}
 
-  navegarAtePrincipal() {
+  logarUsuario() {
     this.router.navigate(['/principal']);
   }
 

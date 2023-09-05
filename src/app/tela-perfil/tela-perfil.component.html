@@ -1,63 +1,179 @@
 <app-nav-bar></app-nav-bar>
 <div class="container">
+  <h1>Seu Perfil</h1>
   <div class="divFormulario">
-    <form action="">
+    <form
+      (ngSubmit)="atualizarUsuario()"
+      [formGroup]="formularioAtualizarUsuartio"
+    >
       <div class="campoForm">
+        <label for="nome">Nome: </label>
         <input
           type="text"
           name="nome"
           id="nome"
           placeholder="Exemplo Nome"
+          formControlName="nome"
+          [ngClass]="{
+            'invalid-input':
+              (formularioAtualizarUsuartio.get('nome')?.invalid && formSubmited)
+          }"
           autocomplete="off"
           required
         />
-        <label for="nome">Nome: </label>
       </div>
 
       <div class="campoForm">
+        <label for="email">E-mail: </label>
         <input
           type="text"
           name="email"
           id="email"
           placeholder="exemplo@email.com"
+          formControlName="email"
+          [ngClass]="{
+            'invalid-input':
+              (formularioAtualizarUsuartio.get('email')?.invalid && formSubmited)
+          }"
           autocomplete="off"
           required
         />
-        <label for="email">E-mail: </label>
       </div>
 
       <div class="campoForm">
+        <label for="tel">Telefone: </label>
         <input
           type="text"
           name="tel"
           id="tel"
           placeholder="(xx) xxxxx-xxxx"
+          maxlength="15"
+          mask="(00) 00000-0000"
+          formControlName="telefone"
+          [ngClass]="{
+            'invalid-input':
+              (formularioAtualizarUsuartio.get('telefone')?.invalid && formSubmited)
+          }"
           autocomplete="off"
           required
-          #telefoneInput
-          (input)="formatarTelefone(telefoneInput.value)"
-          [(ngModel)]="telefone"
-          [maxlength]="15"
         />
-        <label for="tel">Telefone: </label>
       </div>
 
-      <div class="campoForm">
-        <input
-          type="text"
-          name="ende"
-          id="ende"
-          placeholder="Rua Exemplo 000"
-          autocomplete="off"
-          required
-        />
-        <label for="ende">Endereço: </label>
+      <div class="divEndereco">
+        <div class="campoForm">
+          <label>Endereço: </label>
+          <input
+            type="text"
+            name="cep"
+            id="cep"
+            placeholder="CEP"
+            mask="00000-000"
+            formControlName="cep"
+            (blur)="procurarEndereco()"
+            maxlength="9"
+            [ngClass]="{
+              'invalid-input':
+                (formularioAtualizarUsuartio.get('cep')?.invalid && formSubmited)
+            }"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div class="divRuaBairro">
+          <div class="campoForm">
+            <input
+              type="text"
+              name="rua"
+              id="rua"
+              placeholder="Rua"
+              formControlName="logradouro"
+              [ngClass]="{
+                'invalid-input':
+                  (formularioAtualizarUsuartio.get('logradouro')?.invalid && formSubmited)
+              }"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <div id="divisoria"></div>
+          <div class="campoForm">
+            <input
+              type="text"
+              name="bairro"
+              id="bairro"
+              placeholder="Bairro"
+              formControlName="bairro"
+              [ngClass]="{
+                'invalid-input':
+                  (formularioAtualizarUsuartio.get('bairro')?.invalid && formSubmited)
+              }"
+              autocomplete="off"
+              required
+            />
+          </div>
+        </div>
+        <div class="divNumeroCidade">
+          <div class="campoForm">
+            <input
+              type="text"
+              name="numero"
+              id="numero"
+              placeholder="Número"
+              formControlName="numero"
+              maxlength="4"
+              [ngClass]="{
+                'invalid-input':
+                  (formularioAtualizarUsuartio.get('numero')?.invalid && formSubmited)
+              }"
+              autocomplete="off"
+              required
+            />
+          </div>
+          <div id="divisoria"></div>
+          <div class="campoForm">
+            <input
+              type="text"
+              name="cidade"
+              id="cidade"
+              placeholder="Cidade"
+              formControlName="localidade"
+              [ngClass]="{
+                'invalid-input':
+                  (formularioAtualizarUsuartio.get('localidade')?.invalid && formSubmited)
+              }"
+              autocomplete="off"
+              required
+            />
+          </div>
+        </div>
+        <div class="campoForm">
+          <input
+            type="text"
+            name="uf"
+            id="uf"
+            placeholder="Estado"
+            formControlName="uf"
+            [ngClass]="{
+              'invalid-input':
+                (formularioAtualizarUsuartio.get('uf')?.invalid && formSubmited)
+            }"
+            autocomplete="off"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="divBotao">
+        <button class="botaoCancelar" type="button" (click)="navagarTelaLogin()">
+          Sair
+        </button>
+        <button
+          type="submit"
+          class="botaoCadastrar"
+        >
+          Salvar
+        </button>
       </div>
     </form>
-
-    <div class="botaoSalvarPerfil">
-      <button type="button" class="botaoSair">Sair</button>
-      <button type="submit" class="botaoSalvar">Salvar</button>
-    </div>
   </div>
 </div>

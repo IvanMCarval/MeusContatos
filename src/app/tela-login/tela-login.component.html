@@ -5,14 +5,14 @@
             <p id="subtitle">Entre e comece a gerenciar seus contatos.</p>
         </div>
         <div>
-            <form id="loginForm">
+            <form id="loginForm" (ngSubmit)="logarUsuario()">
                 <input type="email" id="email" class="loginInputs" name="email" placeholder="E-mail" required>
                 <input type="password" id="password" class="loginInputs" name="password" placeholder="Senha" required>
 
 
                 <div class="botoesCadastrarLogar">
-                    <button id="loginBtn" (click)="navegarAteCadastroUsuario()">Cadastrar-se</button>
-                    <button id="loginBtn" type="submit" (click)="navegarAtePrincipal()">Login</button>
+                    <button class="loginBtn" type="button" (click)="navegarAteCadastroUsuario()">Cadastrar-se</button>
+                    <button class="loginBtn" type="submit">Login</button>
                 </div>
             </form>
         </div>

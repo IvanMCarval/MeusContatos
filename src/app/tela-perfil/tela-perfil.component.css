@@ -1,33 +1,41 @@
 .container {
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding-top: 5rem;
+  align-items: center;
+}
+
+h1 {
+  font-family: "Lexend-Deca";
+  font-weight: normal;
+  color: #181818;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .divFormulario {
-  width: 25%;
+  width: 25rem;
   padding: 1.5rem;
   border: 2px solid #371158;
   border-radius: 15px;
 }
 
-form {
-  box-sizing: border-box;
+.campoForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.campoForm{
-  position: relative;
-  margin-top: 3rem;
+#divisoria {
+  width: 2%;
 }
 
 label {
-  position: absolute;
-  left: 15px;
-  top: 15px;
+  margin-bottom: 0.5rem;
   color: #371158;
-  font-size: 15px;
-  transition: .3s;
+  font-size: 20px;
 }
 
 input {
@@ -41,59 +49,49 @@ input {
   padding: 0.5rem;
 }
 
-input:focus + label,
-input:valid + label
-{
-  color: #4f1681;
-  font-size: 25px;
-  top: -35px;
-  transition: .3s;
-}
-
-input:not(:focus)::placeholder{
-  opacity: 0;
-}
-
-input:focus::placeholder {
-  opacity: 0.3;
-}
-
-.botaoSalvarPerfil {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 2.5rem;
-}
-
-.botaoSalvar {
+button {
   cursor: pointer;
   font-size: 20px;
-  width: 25%;
+  width: 30%;
   height: 40px;
   border-radius: 10px;
-  color: white;
-  background-color: #371158;
   border-style: none;
+  margin-top: 0.5rem;
 }
 
-.botaoSalvar:hover {
+.botaoCadastrar {
+  color: white;
+  background-color: #371158;
+}
+
+.botaoCadastrar:hover {
   background-color: #4f1681;
   box-shadow: #4f1681;
 }
 
-.botaoSair {
-  cursor: pointer;
-  font-size: 20px;
-  width: 25%;
-  height: 40px;
-  border-radius: 10px;
-  color: black;
-  background-color: #cfb105;
-  border-style: none;
+.botaoCancelar{
+  background-color: #cecece;
 }
 
-.botaoSair:hover{
-  background-color: #FFD700;
-  box-shadow: #FFD700;
+.botaoCancelar:hover {
+  background-color: #e0e0e0;
 }
 
+.divBotao {
+  display: flex;
+  justify-content: space-between;
+}
 
+.divRuaBairro {
+  display: flex;
+  justify-content: space-between;
+}
+
+.divNumeroCidade {
+  display: flex;
+  justify-content: space-between;
+}
+
+.invalid-input {
+  border: 2px solid #ff0000;
+}
