@@ -6,9 +6,8 @@
         </div>
         <div>
             <form id="loginForm" (ngSubmit)="logarUsuario()">
-                <input type="email" id="email" class="loginInputs" name="email" placeholder="E-mail" required>
-                <input type="password" id="password" class="loginInputs" name="password" placeholder="Senha" required>
-
+                <input type="email" id="email" class="loginInputs" name="email" placeholder="E-mail" [(ngModel)]="email" required>
+                <input type="password" id="password" class="loginInputs" name="password" placeholder="Senha" [(ngModel)]="senha" required>
 
                 <div class="botoesCadastrarLogar">
                     <button class="loginBtn" type="button" (click)="navegarAteCadastroUsuario()">Cadastrar-se</button>

@@ -4,6 +4,7 @@ import { EnderecoService } from '../Service/EnderecoService/endereco.service';
 import { Usuario } from '../Models/usuario.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UsuarioService } from '../Service/Usuario/usuario.service';
 
 @Component({
   selector: 'app-tela-cadastro-usuario',
@@ -18,7 +19,8 @@ export class TelaCadastroUsuarioComponent {
     private router: Router,
     private endereco: EnderecoService,
     private fb: FormBuilder,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private usuarioSevice: UsuarioService
   ) {
     this.formularioCadastroUsuartio = this.fb.group({
       nome: ['', Validators.required],
@@ -57,7 +59,7 @@ export class TelaCadastroUsuarioComponent {
     });
   }
 
-  cadastrarUsuario() {
+  cadastrarFormularioUsuario() {
     this.formSubmited = true;
 
     if (this.formularioCadastroUsuartio.valid) {
@@ -79,6 +81,21 @@ export class TelaCadastroUsuarioComponent {
         this.formularioCadastroUsuartio.get('numero')?.value;
 
       console.log(usuario);
+
+      this.usuarioSevice.cadastrarUsuario(usuario).subscribe({
+        next: (response) => {
+          if (response) {
+            this.snackBar.open('Usuario cadastrado com sucesso!', 'Fechar', {
+              duration: 3000,
+            })
+
+            this.navagarTelaLogin()
+          }
+        },
+        error(err) {
+          console.log('Erro ao cadastrar Usuario')
+        },
+      })
     } else {
       this.snackBar.open('Preencha os campos obrigatorios!', 'Fechar', {
         duration: 3000,
