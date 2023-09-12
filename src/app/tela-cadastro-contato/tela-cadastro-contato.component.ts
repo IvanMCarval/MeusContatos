@@ -4,6 +4,7 @@ import { EnderecoService } from '../Service/EnderecoService/endereco.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Contato } from '../Models/contato.model';
+import { AuthService } from '../Service/Auth/auth.service';
 
 @Component({
   selector: 'app-tela-cadastro-contato',
@@ -19,7 +20,7 @@ export class TelaCadastroContatoComponent {
     private endereco : EnderecoService,
     private fb : FormBuilder,
     private snackBar : MatSnackBar
-    ){
+  ) {
       this.formularioCadastroContato = this.fb.group({
         nome: ['', Validators.required],
         email: ['', Validators.required],
@@ -31,7 +32,7 @@ export class TelaCadastroContatoComponent {
         localidade: ['', Validators.required],
         uf: ['', Validators.required],
       });
-    }
+  }
 
   procurarEndereco() {
     const cep = this.formularioCadastroContato.get('cep')?.value;

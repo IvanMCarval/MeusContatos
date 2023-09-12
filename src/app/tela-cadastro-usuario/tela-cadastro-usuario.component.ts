@@ -80,8 +80,6 @@ export class TelaCadastroUsuarioComponent {
       usuario.endereco.numero =
         this.formularioCadastroUsuartio.get('numero')?.value;
 
-      console.log(usuario);
-
       this.usuarioSevice.cadastrarUsuario(usuario).subscribe({
         next: (response) => {
           if (response) {

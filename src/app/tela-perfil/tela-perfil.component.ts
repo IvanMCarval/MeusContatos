@@ -4,6 +4,8 @@ import { EnderecoService } from '../Service/EnderecoService/endereco.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuarioDTO } from '../Models/usuarioDTO.model';
+import { AuthService } from '../Service/Auth/auth.service';
+import { UsuarioService } from '../Service/Usuario/usuario.service';
 
 @Component({
   selector: 'app-tela-perfil',
@@ -18,7 +20,9 @@ export class TelaPerfilComponent{
     private router: Router,
     private endereco: EnderecoService,
     private fb: FormBuilder,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private authService: AuthService,
+    private usuarioService: UsuarioService
   ) {
     this.formularioAtualizarUsuartio = this.fb.group({
       nome: ['', Validators.required],
@@ -76,11 +80,16 @@ export class TelaPerfilComponent{
       usuario.endereco.numero =
         this.formularioAtualizarUsuartio.get('numero')?.value;
 
-      console.log(usuario);
+      
     } else {
       this.snackBar.open('Preencha os campos obrigatorios!', 'Fechar', {
         duration: 3000,
       });
     }
+  }
+
+  logout() {
+    this.authService.logout()
+    this.navagarTelaLogin()
   }
 }

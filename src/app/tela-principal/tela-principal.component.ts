@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from '../Models/usuario.model';
+import { AuthService } from '../Service/Auth/auth.service';
 
 @Component({
   selector: 'app-tela-principal',
@@ -16,7 +17,7 @@ export class TelaPrincipalComponent {
     this.router.navigate(['/cadastro_contato']);
   }
 
-  name: string = 'Ivan';
+  name: string = localStorage.getItem('nome')!;
 
   list: any[] = [
     {
