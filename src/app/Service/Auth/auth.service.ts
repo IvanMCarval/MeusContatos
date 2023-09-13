@@ -14,20 +14,13 @@ interface DecodedToken {
 export class AuthService {
   private baseUrl = 'http://localhost:8080/usuario/auth'
   private token: string | null = ''
-  private http?: HttpClient
 
-  constructor()
-  constructor(httpClient: HttpClient)
-  constructor(private httpClient?: HttpClient) { 
-    if (httpClient) {
-      this.http = httpClient
-    }
-  }
+  constructor(private http: HttpClient) {}
 
   login(email: string, senha: string): Observable<string | null> {
     const body = {email, senha}
 
-    return this.http!.post<any>(`${this.baseUrl}`, body)
+    return this.http.post<any>(`${this.baseUrl}`, body)
       .pipe(
         map(response => {
           this.token = response.token

@@ -5,14 +5,14 @@ import { TelaPerfilComponent } from './tela-perfil/tela-perfil.component';
 import { TelaLoginComponent } from './tela-login/tela-login.component'
 import { TelaCadastroContatoComponent } from './tela-cadastro-contato/tela-cadastro-contato.component';
 import { TelaCadastroUsuarioComponent } from './tela-cadastro-usuario/tela-cadastro-usuario.component';
-import { authGuard } from './Service/Auth/Guard/auth.guard';
+import { AuthGuard } from './Service/Auth/Guard/auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: TelaLoginComponent},
-  {path: 'principal', component: TelaPrincipalComponent, canActivate: [authGuard]},
-  {path: 'perfil', component: TelaPerfilComponent, canActivate: [authGuard]},
-  {path: 'cadastro_contato', component: TelaCadastroContatoComponent, canActivate: [authGuard]},
+  {path: 'principal', component: TelaPrincipalComponent, canActivate: [AuthGuard]},
+  {path: 'perfil', component: TelaPerfilComponent, canActivate: [AuthGuard]},
+  {path: 'cadastro_contato', component: TelaCadastroContatoComponent, canActivate: [AuthGuard]},
   {path: 'cadastro_usuario', component: TelaCadastroUsuarioComponent}
 ];
 

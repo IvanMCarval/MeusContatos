@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EnderecoService } from '../Service/EnderecoService/endereco.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -12,7 +12,7 @@ import { UsuarioService } from '../Service/Usuario/usuario.service';
   templateUrl: './tela-perfil.component.html',
   styleUrls: ['./tela-perfil.component.css']
 })
-export class TelaPerfilComponent{
+export class TelaPerfilComponent implements OnInit{
   formularioAtualizarUsuartio: FormGroup;
   formSubmited: boolean = false;
 
@@ -36,12 +36,36 @@ export class TelaPerfilComponent{
       uf: ['', Validators.required],
     });
   }
+  ngOnInit(): void {
+    this.buscarDadosUsuario()
+  }
 
-  navagarTelaLogin() {
+  navagarTelaLogin(): void {
     this.router.navigate(['/']);
   }
 
-  procurarEndereco() {
+  buscarDadosUsuario(): void {
+    this.usuarioService.getUsuarioPorId(localStorage.getItem('id')!).subscribe({
+      next: (response) => {
+        this.formularioAtualizarUsuartio.patchValue({
+          nome: response.nome,
+          email: response.email,
+          telefone: response.telefone,
+          cep: response.endereco.cep,
+          logradouro: response.endereco.logradouro,
+          bairro: response.endereco.bairro,
+          numero: response.endereco.numero,
+          localidade: response.endereco.localidade,
+          uf: response.endereco.uf,
+        })
+      },
+      error(erro) {
+        console.log('Erro ao carregar informações ' + erro)
+      },
+    })
+  }
+
+  procurarEndereco(): void {
     const cep = this.formularioAtualizarUsuartio.get('cep')?.value;
     const numeroEndereco = this.formularioAtualizarUsuartio.get('numero')?.value;
 
@@ -60,7 +84,7 @@ export class TelaPerfilComponent{
     });
   }
 
-  atualizarUsuario() {
+  atualizarUsuario(): void {
     this.formSubmited = true;
 
     if (this.formularioAtualizarUsuartio.valid) {
@@ -80,7 +104,7 @@ export class TelaPerfilComponent{
       usuario.endereco.numero =
         this.formularioAtualizarUsuartio.get('numero')?.value;
 
-      
+
     } else {
       this.snackBar.open('Preencha os campos obrigatorios!', 'Fechar', {
         duration: 3000,
@@ -88,7 +112,7 @@ export class TelaPerfilComponent{
     }
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout()
     this.navagarTelaLogin()
   }

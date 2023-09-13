@@ -7,18 +7,22 @@ import { UsuarioDTO } from 'src/app/Models/usuarioDTO.model';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private baseUrl = 'http://localhost:8080'
+  private baseUrl = 'http://localhost:8080/usuario'
 
   constructor(private http: HttpClient) { }
 
   cadastrarUsuario(usuario: Usuario) {
     const usuarioObj = usuario
-    return this.http.post<any>(`${this.baseUrl}/usuario/cadastrarUsuario`, usuarioObj)
+    return this.http.post<any>(`${this.baseUrl}/cadastrarUsuario`, usuarioObj)
   }
 
   atualizarUsuario(usuario: UsuarioDTO, idUsuario: String) {
     const usuarioDtoObj = usuario
     const id = idUsuario
-    return this.http.put<any>(`${this.baseUrl}/usuario/${id}/atualizar-usuario`, usuarioDtoObj)
+    return this.http.put<any>(`${this.baseUrl}/${id}/atualizar-usuario`, usuarioDtoObj)
+  }
+
+  getUsuarioPorId(id: string) {
+    return this.http.get<any>(`${this.baseUrl}/${id}`)
   }
 }
