@@ -12,7 +12,7 @@ interface DecodedToken {
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8080/usuario/auth'
+  private baseUrl = '/api/usuario/auth'
   private token: string | null = ''
 
   constructor(private http: HttpClient) {}

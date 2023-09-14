@@ -16,6 +16,8 @@ export class TelaPerfilComponent implements OnInit{
   formularioAtualizarUsuartio: FormGroup;
   formSubmited: boolean = false;
 
+  private id: string = ''
+
   constructor(
     private router: Router,
     private endereco: EnderecoService,
@@ -37,6 +39,7 @@ export class TelaPerfilComponent implements OnInit{
     });
   }
   ngOnInit(): void {
+    this.id = localStorage.getItem('id')!
     this.buscarDadosUsuario()
   }
 
@@ -45,7 +48,7 @@ export class TelaPerfilComponent implements OnInit{
   }
 
   buscarDadosUsuario(): void {
-    this.usuarioService.getUsuarioPorId(localStorage.getItem('id')!).subscribe({
+    this.usuarioService.getUsuarioPorId(this.id).subscribe({
       next: (response) => {
         this.formularioAtualizarUsuartio.patchValue({
           nome: response.nome,
@@ -60,7 +63,7 @@ export class TelaPerfilComponent implements OnInit{
         })
       },
       error(erro) {
-        console.log('Erro ao carregar informações ' + erro)
+        console.log('Erro ao carregar informações ')
       },
     })
   }
@@ -104,7 +107,18 @@ export class TelaPerfilComponent implements OnInit{
       usuario.endereco.numero =
         this.formularioAtualizarUsuartio.get('numero')?.value;
 
-
+      this.usuarioService.atualizarUsuario(usuario, this.id).subscribe({
+        next: (response) => {
+          if (response) {
+            this.snackBar.open('Informações alteradas com sucesso!', 'Fechar', {
+              duration: 3000,
+            });
+          }
+        },
+        error(erro) {
+          console.log('Erro ao atualizar informações')
+        },
+      })
     } else {
       this.snackBar.open('Preencha os campos obrigatorios!', 'Fechar', {
         duration: 3000,
