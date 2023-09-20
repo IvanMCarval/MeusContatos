@@ -9,7 +9,10 @@ import { AuthService } from '../Service/Auth/auth.service';
   styleUrls: ['./tela-principal.component.css'],
 })
 export class TelaPrincipalComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    
+  ) {}
 
   estadoPainel = false;
 
@@ -18,6 +21,8 @@ export class TelaPrincipalComponent {
   }
 
   name: string = localStorage.getItem('nome')!;
+
+
 
   list: any[] = [
     {
