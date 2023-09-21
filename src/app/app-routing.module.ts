@@ -13,6 +13,7 @@ const routes: Routes = [
   {path: 'principal', component: TelaPrincipalComponent, canActivate: [AuthGuard]},
   {path: 'perfil', component: TelaPerfilComponent, canActivate: [AuthGuard]},
   {path: 'cadastro_contato', component: TelaCadastroContatoComponent, canActivate: [AuthGuard]},
+  {path: 'edicao/:id', component: TelaCadastroContatoComponent, canActivate: [AuthGuard]},
   {path: 'cadastro_usuario', component: TelaCadastroUsuarioComponent}
 ];
 

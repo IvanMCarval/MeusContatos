@@ -55,6 +55,10 @@ export class TelaPrincipalComponent implements OnInit{
     });
   }
 
+  navegarTelaEdiacao() {
+    this.router.navigate(['/edicao/'])
+  }
+
   deletarContato(id: string): void{
     const idContato = Number(id)
     this.contatoService.deletarContato(idContato).subscribe({

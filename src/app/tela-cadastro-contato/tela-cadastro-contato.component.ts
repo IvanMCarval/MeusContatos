@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EnderecoService } from '../Service/EnderecoService/endereco.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,12 +11,15 @@ import { ContatoService } from '../Service/Contato/contato.service';
   templateUrl: './tela-cadastro-contato.component.html',
   styleUrls: ['./tela-cadastro-contato.component.css']
 })
-export class TelaCadastroContatoComponent {
+export class TelaCadastroContatoComponent implements OnInit{
   formularioCadastroContato: FormGroup;
   formSubmited: boolean = false;
 
+  isEdicao: boolean = false;
+
   constructor(
     private router : Router,
+    private route: ActivatedRoute,
     private endereco : EnderecoService,
     private fb : FormBuilder, 
     private snackBar : MatSnackBar,
@@ -33,6 +36,34 @@ export class TelaCadastroContatoComponent {
         localidade: ['', Validators.required],
         uf: ['', Validators.required],
       });
+  }
+
+  
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const id = +params['id']
+      if (!isNaN(id)) {
+        this.buscarDadosContato(id)
+      }
+    })
+  }
+
+  buscarDadosContato(id: number): void {
+    this.contatoService.getContatoPorId(id).subscribe({
+      next: (response) => {
+        this.formularioCadastroContato.patchValue({
+          nome: response.nome,
+          email: response.email,
+          telefone: response.telefone,
+          cep: response.endereco.cep,
+          logradouro: response.endereco.logradouro,
+          bairro: response.endereco.bairro,
+          numero: response.endereco.numero,
+          localidade: response.endereco.localidade,
+          uf: response.endereco.uf,
+        })
+      }
+    })
   }
 
   procurarEndereco() {

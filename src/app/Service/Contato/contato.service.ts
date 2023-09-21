@@ -24,4 +24,8 @@ export class ContatoService {
     return this.http.delete<any>(`${this.baseUrl}/${id}/deletar-contato`)
   }
 
+  getContatoPorId(id: number) {
+    return this.http.get<Contato>(`${this.baseUrl}/${id}`)
+  }
+
 }
