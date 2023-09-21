@@ -4,7 +4,7 @@ import { EnderecoService } from '../Service/EnderecoService/endereco.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Contato } from '../Models/contato.model';
-import { AuthService } from '../Service/Auth/auth.service';
+import { ContatoService } from '../Service/Contato/contato.service';
 
 @Component({
   selector: 'app-tela-cadastro-contato',
@@ -18,8 +18,9 @@ export class TelaCadastroContatoComponent {
   constructor(
     private router : Router,
     private endereco : EnderecoService,
-    private fb : FormBuilder,
-    private snackBar : MatSnackBar
+    private fb : FormBuilder, 
+    private snackBar : MatSnackBar,
+    private contatoService : ContatoService
   ) {
       this.formularioCadastroContato = this.fb.group({
         nome: ['', Validators.required],
@@ -58,7 +59,10 @@ export class TelaCadastroContatoComponent {
 
     if (this.formularioCadastroContato.valid) {
       const contato: Contato = new Contato();
+      const usuarioIDString = localStorage.getItem('id');
+      const usuarioID = Number(usuarioIDString);
 
+      contato.id_usuario = usuarioID;
       contato.nome = this.formularioCadastroContato.get('nome')?.value;
       contato.email = this.formularioCadastroContato.get('email')?.value;
       contato.telefone = this.formularioCadastroContato.get('telefone')?.value;
@@ -69,9 +73,20 @@ export class TelaCadastroContatoComponent {
       contato.endereco.uf = this.formularioCadastroContato.get('uf')?.value;
       contato.endereco.numero = this.formularioCadastroContato.get('numero')?.value;
 
-      console.log(contato);
+      this.contatoService.criarContato(contato).subscribe({
+        next: (response) => {
+          if (response) {
+            this.snackBar.open('Contato criado com sucesso!', 'Fechar', {
+              duration: 3000,
+            })
 
-      this.navegarAtePrincipal();
+            this.navegarAtePrincipal()
+          }
+        },
+        error(err) {
+          console.log('Erro ao criar um contato')
+        },
+      })
     } else {
       this.snackBar.open('Preencha os campos obrigatorios!', 'Fechar', {
         duration: 3000,

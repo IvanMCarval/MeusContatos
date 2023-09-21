@@ -70,8 +70,8 @@ export class TelaCadastroUsuarioComponent {
       usuario.email = this.formularioCadastroUsuartio.get('email')?.value;
       usuario.telefone = this.formularioCadastroUsuartio.get('telefone')?.value;
       usuario.endereco.cep = this.formularioCadastroUsuartio.get('cep')?.value;
-      usuario.endereco.logradouro =
-        this.formularioCadastroUsuartio.get('logradouro')?.value;
+      usuario.endereco.logradouro = 
+      this.formularioCadastroUsuartio.get('logradouro')?.value;
       usuario.endereco.bairro =
         this.formularioCadastroUsuartio.get('bairro')?.value;
       usuario.endereco.localidade =

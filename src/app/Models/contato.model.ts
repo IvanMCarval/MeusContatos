@@ -12,6 +12,7 @@ export class Contato {
     uf: '',
     numero: ''
   };
+  id_usuario: number = 0;
 
   constructor(
 
