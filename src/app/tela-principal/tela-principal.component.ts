@@ -15,6 +15,7 @@ export class TelaPrincipalComponent implements OnInit{
   ) {}
   contatos: Contato[] = [];
   estadoPainel = false;
+  idUsuario: string = '';
 
   navegarAteCadastro() {
     this.router.navigate(['/cadastro_contato']);
@@ -23,16 +24,17 @@ export class TelaPrincipalComponent implements OnInit{
   name: string = localStorage.getItem('nome')!;
 
   ngOnInit(): void {
-      this.buscarListaDeContatos();
+    this.idUsuario = localStorage.getItem('id')!;
+    this.buscarListaDeContatos(this.idUsuario);
   }
 
-  buscarListaDeContatos(): void{
-    const idUsuario = localStorage.getItem('id');
-    this.contatoService.findAllContatos(idUsuario!).subscribe({
+  buscarListaDeContatos(idUsuario: string): void{
+    this.contatoService.findAllContatos(idUsuario).subscribe({
       next:(response) => {
         response.forEach(contato => {
           const contatoObj: Contato = new Contato();
 
+          contatoObj.id = contato.id;
           contatoObj.nome = contato.nome;
           contatoObj.email = contato.email;
           contatoObj.telefone = contato.telefone;
@@ -51,5 +53,18 @@ export class TelaPrincipalComponent implements OnInit{
           console.log("Erro ao buscar lista de contato.")
       },
     });
+  }
+
+  deletarContato(id: string): void{
+    const idContato = Number(id)
+    this.contatoService.deletarContato(idContato).subscribe({
+      next: (response) => {
+        console.log(response)
+      },
+      error(err) {
+          console.log(err)
+      },
+    })
+    window.location.reload();
   }
 }
