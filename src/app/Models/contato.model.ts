@@ -12,11 +12,7 @@ export class Contato {
     uf: '',
     numero: ''
   };
-  id_usuario: number = 0;
+  usuarioId: number = 0;
 
-  constructor(
-
-  ) {
-
-  }
+  constructor() {}
 }

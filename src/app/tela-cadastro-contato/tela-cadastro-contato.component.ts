@@ -60,9 +60,9 @@ export class TelaCadastroContatoComponent {
     if (this.formularioCadastroContato.valid) {
       const contato: Contato = new Contato();
       const usuarioIDString = localStorage.getItem('id');
-      const usuarioID = Number(usuarioIDString);
+      const id_usuario = Number(usuarioIDString);
 
-      contato.id_usuario = usuarioID;
+      contato.usuarioId = id_usuario;
       contato.nome = this.formularioCadastroContato.get('nome')?.value;
       contato.email = this.formularioCadastroContato.get('email')?.value;
       contato.telefone = this.formularioCadastroContato.get('telefone')?.value;
