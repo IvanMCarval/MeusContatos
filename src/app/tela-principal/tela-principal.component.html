@@ -4,19 +4,19 @@
   <div class="containerLista">
     <ul>
       <mat-accordion>
-        <li *ngFor="let item of list">
+        <li *ngFor="let contato of contatos">
           <mat-expansion-panel (opened)="estadoPainel = true">
             <mat-expansion-panel-header>
-              <mat-panel-title>{{ item.nome }}</mat-panel-title>
+              <mat-panel-title>{{ contato.nome }}</mat-panel-title>
             </mat-expansion-panel-header>
 
             <div class="conteudo">
-              <p>E-mail: {{ item.email }}</p>
-              <p>Telefone: {{item.telefone}}</p>
+              <p>E-mail: {{ contato.email }}</p>
+              <p>Telefone: {{contato.telefone}}</p>
               <p>Endereço: 
-                {{ item.endereco.logradouro }} {{ item.endereco.numero }},
-                {{ item.endereco.bairro }}, {{ item.endereco.localidade }}
-                {{ item.endereco.uf }}
+                {{ contato.endereco.logradouro }} {{ contato.endereco.numero }},
+                {{ contato.endereco.bairro }}, {{ contato.endereco.localidade }}
+                {{ contato.endereco.uf }}
               </p>
             </div>
 

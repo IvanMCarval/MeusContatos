@@ -16,8 +16,8 @@ export class ContatoService {
     return this.http.post<any>(`${this.baseUrl}/criarContato`, contatoObj)
   }
 
-  findAllContatos() : Observable<any> {
-    return this.http.get(`${this.baseUrl}`)
+  findAllContatos(id: string) : Observable<Contato[]> {
+    return this.http.get<Contato[]>(`${this.baseUrl}/${id}/contatos`)
   }
 
 }
