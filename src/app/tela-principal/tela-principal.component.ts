@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../Service/Auth/auth.service';
 import { ContatoService } from '../Service/Contato/contato.service';
 import { Contato } from '../Models/contato.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-tela-principal',
   templateUrl: './tela-principal.component.html',
@@ -11,19 +12,21 @@ import { Contato } from '../Models/contato.model';
 export class TelaPrincipalComponent implements OnInit{
   constructor(
     private router: Router,
-    private contatoService: ContatoService
+    private contatoService: ContatoService,
+    private snackBar: MatSnackBar
   ) {}
+
   contatos: Contato[] = [];
   estadoPainel = false;
   idUsuario: string = '';
+  name: string = '';
 
-  navegarAteCadastro() {
+  navegarAteCadastro(): void {
     this.router.navigate(['/cadastro_contato']);
   }
 
-  name: string = localStorage.getItem('nome')!;
-
   ngOnInit(): void {
+    this.name = localStorage.getItem('nome')!;
     this.idUsuario = localStorage.getItem('id')!;
     this.buscarListaDeContatos(this.idUsuario);
   }
@@ -49,26 +52,30 @@ export class TelaPrincipalComponent implements OnInit{
           this.contatos.push(contatoObj);
         })
       },
-      error(err) {
-          console.log("Erro ao buscar lista de contato.")
-      },
+      error: (err) => {
+        this.snackBar.open('Erro ao buscar lista de Contatos!', 'Fechar', {
+          duration: 3000,
+        });
+      }
     });
   }
 
-  navegarTelaEdiacao() {
-    this.router.navigate(['/edicao/'])
+  navegarTelaEdiacao(id: string): void {
+    const idContato = Number(id)
+    this.router.navigate(['/edicao', idContato])
   }
 
-  deletarContato(id: string): void{
+  deletarContato(id: string, index: number): void{
     const idContato = Number(id)
     this.contatoService.deletarContato(idContato).subscribe({
       next: (response) => {
-        console.log(response)
+        this.contatos.splice(index, 1);
       },
-      error(err) {
-          console.log(err)
-      },
+      error: (err) => {
+        this.snackBar.open('Erro ao deletar Contato!', 'Fechar', {
+          duration: 3000,
+        });
+      }
     })
-    window.location.reload();
   }
 }

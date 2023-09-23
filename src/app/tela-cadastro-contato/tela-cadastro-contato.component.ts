@@ -16,12 +16,16 @@ export class TelaCadastroContatoComponent implements OnInit{
   formSubmited: boolean = false;
 
   isEdicao: boolean = false;
+  titulo: string = 'Novo Contato'
+  btnCadastrar: string = 'Cadastrar'
+
+  idContatoParaEdicao: number = 0
 
   constructor(
     private router : Router,
     private route: ActivatedRoute,
     private endereco : EnderecoService,
-    private fb : FormBuilder, 
+    private fb : FormBuilder,
     private snackBar : MatSnackBar,
     private contatoService : ContatoService
   ) {
@@ -38,14 +42,21 @@ export class TelaCadastroContatoComponent implements OnInit{
       });
   }
 
-  
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const id = +params['id']
-      if (!isNaN(id)) {
-        this.buscarDadosContato(id)
+      this.idContatoParaEdicao = +params['id']
+      if (!isNaN(this.idContatoParaEdicao)) {
+        this.isEdicao = true
+        this.titulo = 'Editar Contato'
+        this.btnCadastrar = 'Salvar'
+        this.buscarDadosContato(this.idContatoParaEdicao)
       }
     })
+  }
+
+  navegarAtePrincipal() {
+    this.router.navigate(['/principal'])
   }
 
   buscarDadosContato(id: number): void {
@@ -62,6 +73,11 @@ export class TelaCadastroContatoComponent implements OnInit{
           localidade: response.endereco.localidade,
           uf: response.endereco.uf,
         })
+      },
+      error: (err) => {
+        this.snackBar.open('Erro ao buscar Contato!', 'Fechar', {
+          duration: 3000,
+        });
       }
     })
   }
@@ -85,7 +101,7 @@ export class TelaCadastroContatoComponent implements OnInit{
     });
   }
 
-  cadastrarContato() {
+  enviarDadosContato() {
     this.formSubmited = true;
 
     if (this.formularioCadastroContato.valid) {
@@ -104,20 +120,11 @@ export class TelaCadastroContatoComponent implements OnInit{
       contato.endereco.uf = this.formularioCadastroContato.get('uf')?.value;
       contato.endereco.numero = this.formularioCadastroContato.get('numero')?.value;
 
-      this.contatoService.criarContato(contato).subscribe({
-        next: (response) => {
-          if (response) {
-            this.snackBar.open('Contato criado com sucesso!', 'Fechar', {
-              duration: 3000,
-            })
-
-            this.navegarAtePrincipal()
-          }
-        },
-        error(err) {
-          console.log('Erro ao criar um contato')
-        },
-      })
+      if (this.isEdicao) {
+        this.editarContato(contato, this.idContatoParaEdicao)
+      } else {
+        this.criarContato(contato);
+      }
     } else {
       this.snackBar.open('Preencha os campos obrigatorios!', 'Fechar', {
         duration: 3000,
@@ -125,7 +132,37 @@ export class TelaCadastroContatoComponent implements OnInit{
     }
   }
 
-  navegarAtePrincipal() {
-    this.router.navigate(['/principal'])
+  private editarContato(contato: Contato, id: number) {
+    this.contatoService.editarContato(contato, id).subscribe({
+      next: (response) => {
+        this.snackBar.open('Contato editado com sucesso!', 'Fechar', {
+          duration: 3000,
+        });
+        this.navegarAtePrincipal()
+      },
+      error: (err) => {
+        this.snackBar.open('Erro ao editar o Contato!', 'Fechar', {
+          duration: 3000,
+        });
+      }
+    })
+  }
+
+  private criarContato(contato: Contato) {
+    this.contatoService.criarContato(contato).subscribe({
+      next: (response) => {
+        if (response) {
+          this.snackBar.open('Contato criado com sucesso!', 'Fechar', {
+            duration: 3000,
+          });
+          this.navegarAtePrincipal();
+        }
+      },
+      error: (err) => {
+        this.snackBar.open('Erro ao criar o Contato!', 'Fechar', {
+          duration: 3000,
+        });
+      }
+    });
   }
 }

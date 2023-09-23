@@ -16,6 +16,11 @@ export class ContatoService {
     return this.http.post<any>(`${this.baseUrl}/criarContato`, contatoObj)
   }
 
+  editarContato(contato: Contato, id: number) {
+    const contatoAtualizado = contato
+    return this.http.put<any>(`${this.baseUrl}/${id}/atualizar-contato`, contatoAtualizado)
+  }
+
   findAllContatos(id: string) : Observable<Contato[]> {
     return this.http.get<Contato[]>(`${this.baseUrl}/${id}/contatos`)
   }
@@ -27,5 +32,4 @@ export class ContatoService {
   getContatoPorId(id: number) {
     return this.http.get<Contato>(`${this.baseUrl}/${id}`)
   }
-
 }

@@ -4,7 +4,7 @@
   <div class="containerLista">
     <ul>
       <mat-accordion>
-        <li *ngFor="let contato of contatos">
+        <li *ngFor="let contato of contatos, let i = index">
           <mat-expansion-panel (opened)="estadoPainel = true">
             <mat-expansion-panel-header>
               <mat-panel-title>{{ contato.nome }}</mat-panel-title>
@@ -13,7 +13,7 @@
             <div class="conteudo">
               <p>E-mail: {{ contato.email }}</p>
               <p>Telefone: {{contato.telefone}}</p>
-              <p>Endereço: 
+              <p>Endereço:
                 {{ contato.endereco.logradouro }} {{ contato.endereco.numero }},
                 {{ contato.endereco.bairro }}, {{ contato.endereco.localidade }}
                 {{ contato.endereco.uf }}
@@ -21,8 +21,8 @@
             </div>
 
             <div class="containerBotoes">
-              <button class="botaoEditar">Editar</button>
-              <button class="botaoDeletar" (click)="deletarContato(contato.id)">Deletar</button>
+              <button class="botaoEditar" (click)="navegarTelaEdiacao(contato.id)">Editar</button>
+              <button class="botaoDeletar" (click)="deletarContato(contato.id, i)">Deletar</button>
             </div>
           </mat-expansion-panel>
         </li>

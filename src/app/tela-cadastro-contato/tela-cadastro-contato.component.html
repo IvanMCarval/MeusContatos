@@ -1,9 +1,9 @@
 <app-nav-bar></app-nav-bar>
 <div class="cadastroContainer">
-  <h1 id="title">Novo Contato</h1>
+  <h1 id="title">{{titulo}}</h1>
   <form
     [formGroup]="formularioCadastroContato"
-    (ngSubmit)="cadastrarContato()"
+    (ngSubmit)="enviarDadosContato()"
     class="cadastroForm"
   >
     <div class="inputBox">
@@ -172,7 +172,7 @@
     </div>
     <div class="btnCadastroDiv">
       <button id="cadastroBtn" type="submit">
-        Cadastrar
+        {{btnCadastrar}}
       </button>
     </div>
   </form>
