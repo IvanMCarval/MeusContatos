@@ -27,7 +27,7 @@ export class TelaPerfilComponent implements OnInit{
     private usuarioService: UsuarioService
   ) {
     this.formularioAtualizarUsuartio = this.fb.group({
-      nome: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
+      nome: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
       cep: ['', Validators.required],
@@ -128,9 +128,11 @@ export class TelaPerfilComponent implements OnInit{
           });
         }
       },
-      error(erro) {
-        console.log('Erro ao atualizar informações')
-      },
+      error: (err) => {
+        this.snackBar.open(err.error, 'Fechar', {
+          duration: 10000,
+        })
+      }
     })
   }
 

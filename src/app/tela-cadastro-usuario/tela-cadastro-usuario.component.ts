@@ -23,7 +23,7 @@ export class TelaCadastroUsuarioComponent {
     private usuarioSevice: UsuarioService
   ) {
     this.formularioCadastroUsuartio = this.fb.group({
-      nome: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
+      nome: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]],
       senha: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
