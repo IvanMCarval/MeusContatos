@@ -1,19 +1,41 @@
 <div class="loginContainer">
-    <div class="">
-        <div class="loginTxt">
-            <h1 id="title">Login</h1>
-            <p id="subtitle">Entre e comece a gerenciar seus contatos.</p>
-        </div>
-        <div>
-            <form id="loginForm" (ngSubmit)="logarUsuario()">
-                <input type="email" id="email" class="loginInputs" name="email" placeholder="E-mail" [(ngModel)]="email" required>
-                <input type="password" id="password" class="loginInputs" name="password" placeholder="Senha" [(ngModel)]="senha" required>
-
-                <div class="botoesCadastrarLogar">
-                    <button class="loginBtn" type="button" (click)="navegarAteCadastroUsuario()">Cadastrar-se</button>
-                    <button class="loginBtn" type="submit">Login</button>
-                </div>
-            </form>
-        </div>
+  <div class="">
+    <div class="loginTxt">
+      <h1 id="title">Login</h1>
+      <p id="subtitle">Entre e comece a gerenciar seus contatos.</p>
     </div>
+    <div>
+      <form id="loginForm" (ngSubmit)="logarUsuario()">
+        <input
+          type="email"
+          id="email"
+          class="loginInputs"
+          name="email"
+          placeholder="E-mail"
+          [(ngModel)]="email"
+          required
+        />
+        <input
+          type="password"
+          id="password"
+          class="loginInputs"
+          name="password"
+          placeholder="Senha"
+          [(ngModel)]="senha"
+          required
+        />
+
+        <div class="botoesCadastrarLogar">
+          <button
+            class="loginBtn"
+            type="button"
+            (click)="navegarAteCadastroUsuario()"
+          >
+            Cadastrar-se
+          </button>
+          <button class="loginBtn" type="submit">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

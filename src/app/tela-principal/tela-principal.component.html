@@ -2,7 +2,11 @@
 <div class="container">
   <h1 class="spanNomeUsuario">Bem Vindo {{ name }}</h1>
   <div class="containerLista">
-    <ul>
+    <div class="spanListaNull" *ngIf="contatos.length == 0">
+      <span>Você não tem nenhum contato cadastrado.</span>
+    </div>
+
+    <ul *ngIf="contatos.length > 0">
       <mat-accordion>
         <li *ngFor="let contato of contatos, let i = index">
           <mat-expansion-panel (opened)="estadoPainel = true">
