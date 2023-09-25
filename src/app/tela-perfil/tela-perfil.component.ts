@@ -27,7 +27,7 @@ export class TelaPerfilComponent implements OnInit{
     private usuarioService: UsuarioService
   ) {
     this.formularioAtualizarUsuartio = this.fb.group({
-      nome: ['', Validators.required],
+      nome: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
       cep: ['', Validators.required],
@@ -89,41 +89,49 @@ export class TelaPerfilComponent implements OnInit{
 
   atualizarUsuario(): void {
     this.formSubmited = true;
-
+    
     if (this.formularioAtualizarUsuartio.valid) {
-      const usuario: UsuarioDTO = new UsuarioDTO();
-
-      usuario.nome = this.formularioAtualizarUsuartio.get('nome')?.value;
-      usuario.email = this.formularioAtualizarUsuartio.get('email')?.value;
-      usuario.telefone = this.formularioAtualizarUsuartio.get('telefone')?.value;
-      usuario.endereco.cep = this.formularioAtualizarUsuartio.get('cep')?.value;
-      usuario.endereco.logradouro =
-        this.formularioAtualizarUsuartio.get('logradouro')?.value;
-      usuario.endereco.bairro =
-        this.formularioAtualizarUsuartio.get('bairro')?.value;
-      usuario.endereco.localidade =
-        this.formularioAtualizarUsuartio.get('localidade')?.value;
-      usuario.endereco.uf = this.formularioAtualizarUsuartio.get('uf')?.value;
-      usuario.endereco.numero =
-        this.formularioAtualizarUsuartio.get('numero')?.value;
-
-      this.usuarioService.atualizarUsuario(usuario, this.id).subscribe({
-        next: (response) => {
-          if (response) {
-            this.snackBar.open('Informações alteradas com sucesso!', 'Fechar', {
-              duration: 3000,
-            });
-          }
-        },
-        error(erro) {
-          console.log('Erro ao atualizar informações')
-        },
+      this.criarUsuario()
+    } else if (this.formularioAtualizarUsuartio.get('nome')?.hasError('pattern')){
+      this.snackBar.open('Este campo deve conter apenas letras!', 'Fechar', {
+        duration: 3000
       })
-    } else {
-      this.snackBar.open('Preencha os campos obrigatorios!', 'Fechar', {
-        duration: 3000,
-      });
+    } else{
+      this.snackBar.open('Preencha todos os campos.', 'Fechar', {
+        duration: 3000
+      })
     }
+  }
+
+  criarUsuario() {
+    const usuario: UsuarioDTO = new UsuarioDTO();
+
+    usuario.nome = this.formularioAtualizarUsuartio.get('nome')?.value;
+    usuario.email = this.formularioAtualizarUsuartio.get('email')?.value;
+    usuario.telefone = this.formularioAtualizarUsuartio.get('telefone')?.value;
+    usuario.endereco.cep = this.formularioAtualizarUsuartio.get('cep')?.value;
+    usuario.endereco.logradouro =
+      this.formularioAtualizarUsuartio.get('logradouro')?.value;
+    usuario.endereco.bairro =
+      this.formularioAtualizarUsuartio.get('bairro')?.value;
+    usuario.endereco.localidade =
+      this.formularioAtualizarUsuartio.get('localidade')?.value;
+    usuario.endereco.uf = this.formularioAtualizarUsuartio.get('uf')?.value;
+    usuario.endereco.numero =
+      this.formularioAtualizarUsuartio.get('numero')?.value;
+
+    this.usuarioService.atualizarUsuario(usuario, this.id, usuario.nome).subscribe({
+      next: (response) => {
+        if (response) {
+          this.snackBar.open('Informações alteradas com sucesso!', 'Fechar', {
+            duration: 3000,
+          });
+        }
+      },
+      error(erro) {
+        console.log('Erro ao atualizar informações')
+      },
+    })
   }
 
   logout(): void {

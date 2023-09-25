@@ -23,7 +23,7 @@ export class TelaCadastroUsuarioComponent {
     private usuarioSevice: UsuarioService
   ) {
     this.formularioCadastroUsuartio = this.fb.group({
-      nome: ['', Validators.required],
+      nome: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
       senha: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
@@ -63,41 +63,51 @@ export class TelaCadastroUsuarioComponent {
     this.formSubmited = true;
 
     if (this.formularioCadastroUsuartio.valid) {
-      const usuario: Usuario = new Usuario();
-
-      usuario.nome = this.formularioCadastroUsuartio.get('nome')?.value;
-      usuario.senha = this.formularioCadastroUsuartio.get('senha')?.value;
-      usuario.email = this.formularioCadastroUsuartio.get('email')?.value;
-      usuario.telefone = this.formularioCadastroUsuartio.get('telefone')?.value;
-      usuario.endereco.cep = this.formularioCadastroUsuartio.get('cep')?.value;
-      usuario.endereco.logradouro = 
-      this.formularioCadastroUsuartio.get('logradouro')?.value;
-      usuario.endereco.bairro =
-        this.formularioCadastroUsuartio.get('bairro')?.value;
-      usuario.endereco.localidade =
-        this.formularioCadastroUsuartio.get('localidade')?.value;
-      usuario.endereco.uf = this.formularioCadastroUsuartio.get('uf')?.value;
-      usuario.endereco.numero =
-        this.formularioCadastroUsuartio.get('numero')?.value;
-
-      this.usuarioSevice.cadastrarUsuario(usuario).subscribe({
-        next: (response) => {
-          if (response) {
-            this.snackBar.open('Usuario cadastrado com sucesso!', 'Fechar', {
-              duration: 3000,
-            })
-
-            this.navagarTelaLogin()
-          }
-        },
-        error(err) {
-          console.log('Erro ao cadastrar Usuario')
-        },
+      this.criarUsuario()
+    } else if (this.formularioCadastroUsuartio.get('nome')?.hasError('pattern')){
+      this.snackBar.open('Este campo deve conter apenas letras!', 'Fechar', {
+        duration: 3000
       })
     } else {
       this.snackBar.open('Preencha os campos obrigatorios!', 'Fechar', {
         duration: 3000,
       });
     }
+  }
+
+  criarUsuario() {
+    const usuario: Usuario = new Usuario();
+
+    usuario.nome = this.formularioCadastroUsuartio.get('nome')?.value;
+    usuario.senha = this.formularioCadastroUsuartio.get('senha')?.value;
+    usuario.email = this.formularioCadastroUsuartio.get('email')?.value;
+    usuario.telefone = this.formularioCadastroUsuartio.get('telefone')?.value;
+    usuario.endereco.cep = this.formularioCadastroUsuartio.get('cep')?.value;
+    usuario.endereco.logradouro = 
+    this.formularioCadastroUsuartio.get('logradouro')?.value;
+    usuario.endereco.bairro =
+      this.formularioCadastroUsuartio.get('bairro')?.value;
+    usuario.endereco.localidade =
+      this.formularioCadastroUsuartio.get('localidade')?.value;
+    usuario.endereco.uf = this.formularioCadastroUsuartio.get('uf')?.value;
+    usuario.endereco.numero =
+      this.formularioCadastroUsuartio.get('numero')?.value;
+
+    this.usuarioSevice.cadastrarUsuario(usuario).subscribe({
+      next: (response) => {
+        if (response) {
+          this.snackBar.open('Usuario cadastrado com sucesso!', 'Fechar', {
+            duration: 3000,
+          })
+
+          this.navagarTelaLogin()
+        }
+      },
+      error: (err) => {
+        this.snackBar.open(err.error, 'Fechar', {
+          duration: 3000,
+        })
+      }
+    })
   }
 }

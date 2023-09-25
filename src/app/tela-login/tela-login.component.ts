@@ -17,15 +17,10 @@ export class TelaLoginComponent {
     this.authService.login(this.email, this.senha).subscribe({
       next: (response) => {
         if (response) {
-          console.log(response)
           this.router.navigate(['/principal']);
         }
-      },
-      error(erro) {
-        console.log('erro ao tentar fazer login')
-      },
+      }
     })
-
   }
 
   navegarAteCadastroUsuario() {

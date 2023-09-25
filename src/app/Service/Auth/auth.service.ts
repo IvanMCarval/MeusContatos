@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
 import jwtDecode from 'jwt-decode';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface DecodedToken {
   id: string,
@@ -15,7 +16,7 @@ export class AuthService {
   private baseUrl = '/api/usuario/auth'
   private token: string | null = ''
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 
   login(email: string, senha: string): Observable<string | null> {
     const body = {email, senha}
@@ -31,7 +32,9 @@ export class AuthService {
           return this.token
         }),
         catchError((erro) => {
-          //console.log(erro)
+          this.snackBar.open(erro.error, 'Fechar', {
+            duration: 3000,
+          })
           return of(null)
         })
       );

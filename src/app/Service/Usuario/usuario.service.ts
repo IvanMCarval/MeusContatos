@@ -16,9 +16,10 @@ export class UsuarioService {
     return this.http.post<any>(`${this.baseUrl}/cadastrarUsuario`, usuarioObj)
   }
 
-  atualizarUsuario(usuario: UsuarioDTO, idUsuario: String) {
+  atualizarUsuario(usuario: UsuarioDTO, idUsuario: string, nome: string) {
     const usuarioDtoObj = usuario
     const id = idUsuario
+    localStorage.setItem('nome', nome)
     return this.http.put<any>(`${this.baseUrl}/${id}/atualizar-usuario`, usuarioDtoObj)
   }
 
