@@ -120,9 +120,10 @@ export class TelaPerfilComponent implements OnInit{
     usuario.endereco.numero =
       this.formularioAtualizarUsuartio.get('numero')?.value;
 
-    this.usuarioService.atualizarUsuario(usuario, this.id, usuario.nome).subscribe({
+    this.usuarioService.atualizarUsuario(usuario, this.id).subscribe({
       next: (response) => {
         if (response) {
+          localStorage.setItem('nome', usuario.nome)
           this.snackBar.open('Informações alteradas com sucesso!', 'Fechar', {
             duration: 3000,
           });
