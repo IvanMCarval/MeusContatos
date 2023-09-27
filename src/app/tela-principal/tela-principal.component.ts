@@ -4,6 +4,8 @@ import { AuthService } from '../Service/Auth/auth.service';
 import { ContatoService } from '../Service/Contato/contato.service';
 import { Contato } from '../Models/contato.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalDeletarContatoComponent } from '../modal-deletar-contato/modal-deletar-contato.component';
 @Component({
   selector: 'app-tela-principal',
   templateUrl: './tela-principal.component.html',
@@ -13,7 +15,8 @@ export class TelaPrincipalComponent implements OnInit{
   constructor(
     private router: Router,
     private contatoService: ContatoService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {}
 
   contatos: Contato[] = [];
@@ -75,6 +78,18 @@ export class TelaPrincipalComponent implements OnInit{
         this.snackBar.open('Erro ao deletar Contato!', 'Fechar', {
           duration: 3000,
         });
+      }
+    })
+  }
+
+  abrirModalDeletarContato(id: string, index: number): void {
+    const dialogRef = this.dialog.open(ModalDeletarContatoComponent, {
+      data: {}
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deletarContato(id, index)
       }
     })
   }

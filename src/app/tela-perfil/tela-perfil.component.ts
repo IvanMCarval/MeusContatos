@@ -27,7 +27,7 @@ export class TelaPerfilComponent implements OnInit{
     private usuarioService: UsuarioService
   ) {
     this.formularioAtualizarUsuartio = this.fb.group({
-      nome: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]+$/)]],
+      nome: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\sÀ-ÿ]+$/u)]],
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', Validators.required],
       cep: ['', Validators.required],

@@ -21,6 +21,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { JwtInterceptor } from './Service/JWT/jwt.interceptor';
 import { AuthService } from './Service/Auth/auth.service';
+import { ModalDeletarContatoComponent } from './modal-deletar-contato/modal-deletar-contato.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { AuthService } from './Service/Auth/auth.service';
     TelaLoginComponent,
     TelaCadastroContatoComponent,
     TelaCadastroUsuarioComponent,
+    ModalDeletarContatoComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,8 @@ import { AuthService } from './Service/Auth/auth.service';
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatExpansionModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [
     EnderecoService,
